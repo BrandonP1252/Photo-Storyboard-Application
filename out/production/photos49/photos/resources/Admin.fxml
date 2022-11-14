@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.controller.AdminController">
+   <children>
+      <Label alignment="CENTER" layoutX="317.0" layoutY="65.0" prefHeight="83.0" prefWidth="171.0" text="Admin" textFill="#c60e0e">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="323.0" layoutY="181.0" prefHeight="49.0" prefWidth="158.0" text="List of Users">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ListView fx:id="userList" layoutX="138.0" layoutY="250.0" prefHeight="200.0" prefWidth="526.0" />
+      <TextField fx:id="userInput" layoutX="300.0" layoutY="478.0" prefHeight="36.0" prefWidth="203.0" />
+      <Button layoutX="300.0" layoutY="538.0" mnemonicParsing="false" onAction="#onAddUser" prefHeight="36.0" prefWidth="95.0" text="Add User" />
+      <Button layoutX="408.0" layoutY="538.0" mnemonicParsing="false" onAction="#onDeleteUser" prefHeight="36.0" prefWidth="95.0" text="Delete User" />
+      <Button layoutX="362.0" layoutY="618.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="36.0" prefWidth="80.0" text="Log Out" />
+   </children>
+</AnchorPane>
