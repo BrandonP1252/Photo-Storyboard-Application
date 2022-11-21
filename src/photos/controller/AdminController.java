@@ -25,6 +25,7 @@ public class AdminController {
             PhotosMain.getUserList().add(user);
         }
         userList.setItems(FXCollections.observableArrayList(PhotosMain.getUserList()));
+        userInput.setText("");
     }
 
     @FXML

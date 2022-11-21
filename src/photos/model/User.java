@@ -7,11 +7,9 @@ public class User {
     private ArrayList<Album> albumList;
 
     public User(String username) {
-
         this.username = username;
         albumList = new ArrayList<>();
     }
-
 
     public String getUsername() {
         return username;

@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.controller.AlbumListController">
    <children>
       <Label alignment="CENTER" layoutX="309.0" layoutY="78.0" prefHeight="58.0" prefWidth="182.0" text="Album List">
@@ -15,12 +14,12 @@
             <Font size="26.0" />
          </font>
       </Label>
-      <ListView layoutX="141.0" layoutY="155.0" prefHeight="268.0" prefWidth="519.0" />
-      <TextField layoutX="291.0" layoutY="445.0" prefHeight="33.0" prefWidth="219.0" />
-      <Button layoutX="356.0" layoutY="491.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="89.0" text="Create Album" />
-      <Button layoutX="278.0" layoutY="494.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="62.0" text="Delete" />
-      <Button layoutX="460.0" layoutY="494.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="62.0" text="Rename" />
-      <Button layoutX="369.0" layoutY="558.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="62.0" text="Open" />
-      <Button layoutX="364.0" layoutY="634.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="73.0" text="Log Out" />
+      <ListView fx:id="albumList" layoutX="141.0" layoutY="155.0" prefHeight="268.0" prefWidth="519.0" />
+      <TextField fx:id="userInput" layoutX="291.0" layoutY="445.0" prefHeight="33.0" prefWidth="219.0" />
+      <Button layoutX="356.0" layoutY="491.0" mnemonicParsing="false" onAction="#onCreateAlbum" prefHeight="39.0" prefWidth="89.0" text="Create Album" />
+      <Button layoutX="278.0" layoutY="494.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="33.0" prefWidth="62.0" text="Delete" />
+      <Button layoutX="460.0" layoutY="494.0" mnemonicParsing="false" onAction="#onRename" prefHeight="33.0" prefWidth="62.0" text="Rename" />
+      <Button layoutX="369.0" layoutY="558.0" mnemonicParsing="false" onAction="#onOpen" prefHeight="33.0" prefWidth="62.0" text="Open" />
+      <Button layoutX="364.0" layoutY="634.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="33.0" prefWidth="73.0" text="Log Out" />
    </children>
 </AnchorPane>
