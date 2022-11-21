@@ -15,6 +15,10 @@ public class User {
         return username;
     }
 
+    public ArrayList<Album> getAlbumList() {
+        return albumList;
+    }
+
     @Override
     public String toString() {
         return username;

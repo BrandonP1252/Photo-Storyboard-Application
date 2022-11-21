@@ -10,4 +10,26 @@ public class Album {
         this.albumName = albumName;
         photoList = new ArrayList<>();
     }
+
+    public String getAlbumName() {
+        return albumName;
+    }
+
+    public void setAlbumName(String newAlbumName) {
+        this.albumName = newAlbumName;
+    }
+
+    @Override
+    public String toString() {
+        return albumName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Album)) {
+            return false;
+        }
+        Album album = (Album) obj;
+        return albumName.equals(album.albumName);
+    }
 }
