@@ -1,5 +1,6 @@
 package photos.controller;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import photos.PhotosMain;
@@ -24,6 +25,7 @@ public class LogInController {
         if (username.equals("admin")) {
             PhotosMain.switchScene(SceneType.ADMIN);
         }
+        logInText.setText("");
     }
 
     public static User getCurrentUser() {

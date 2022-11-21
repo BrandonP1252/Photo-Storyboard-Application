@@ -2,13 +2,16 @@ package photos.controller;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import photos.PhotosMain;
 import photos.model.Album;
 import photos.model.User;
 
-import java.util.Comparator;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 
 public class AlbumListController {
     private static Album currentAlbum;
@@ -72,4 +75,5 @@ public class AlbumListController {
     public static Album getCurrentAlbum() {
         return currentAlbum;
     }
+
 }

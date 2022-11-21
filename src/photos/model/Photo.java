@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Photo {
-    private HashMap<String, ArrayList<String>> tags;
+    private HashMap<String, String> tags;
 
 
 }
