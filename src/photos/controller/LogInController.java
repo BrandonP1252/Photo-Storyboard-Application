@@ -1,10 +1,20 @@
 package photos.controller;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import photos.PhotosMain;
+import photos.model.Album;
 import photos.model.User;
+
+import java.io.IOException;
+import java.util.List;
 
 public class LogInController {
     private static User currentUser;
@@ -12,22 +22,33 @@ public class LogInController {
     private TextField logInText;
 
     @FXML
-    private void onLogIn() {
+    private void onLogIn() throws IOException {
         String username = logInText.getText();
+
+        if (username.equals("admin")) {
+            PhotosMain.switchScene(SceneType.ADMIN);
+        }
 
         for (User user: PhotosMain.getUserList()) {
             String cmpUsername = user.getUsername();
             if (username.equals(cmpUsername) && !username.equals("admin")) {
                 currentUser = user;
-                PhotosMain.switchScene(SceneType.ALBUMLIST);
+                loadListView(currentUser);
             }
         }
-        if (username.equals("admin")) {
-            PhotosMain.switchScene(SceneType.ADMIN);
-        }
+
         logInText.setText("");
     }
 
+    // Updates list view and switches scene
+    public void loadListView(User currentUser) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/AlbumList.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        AlbumListController controller = fxmlLoader.getController();
+        ObservableList<Album> newList = FXCollections.observableArrayList(currentUser.getAlbumList());
+        controller.setAlbumList(newList);
+        PhotosMain.getStage().setScene(scene);
+    }
     public static User getCurrentUser() {
         return currentUser;
     }

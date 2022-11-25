@@ -1,16 +1,14 @@
 package photos.controller;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import photos.PhotosMain;
 import photos.model.Album;
 import photos.model.User;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 
 
 public class AlbumListController {
@@ -23,15 +21,22 @@ public class AlbumListController {
 
     @FXML
     private void onCreateAlbum() {
+
         if (userInput.getText().isBlank()) {
             return;
-        }
+        };
 
         User user = LogInController.getCurrentUser();
+
+        if (userInput.getText().isBlank()) {
+            return;
+        };
+
         Album album = new Album(userInput.getText());
         if (!user.getAlbumList().contains(album)) {
             user.getAlbumList().add(album);
         }
+
         albumList.setItems(FXCollections.observableArrayList(user.getAlbumList()));
         userInput.setText("");
     }
@@ -48,7 +53,6 @@ public class AlbumListController {
                 user.getAlbumList().get(i).setAlbumName(userInput.getText());
             }
         }
-
         albumList.setItems(FXCollections.observableArrayList(user.getAlbumList()));
         userInput.setText("");
     }
@@ -75,5 +79,10 @@ public class AlbumListController {
     public static Album getCurrentAlbum() {
         return currentAlbum;
     }
+
+    public void setAlbumList(ObservableList<Album> newList) {
+        albumList.setItems(newList);
+    }
+
 
 }

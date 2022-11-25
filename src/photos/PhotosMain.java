@@ -1,11 +1,13 @@
 package photos;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import photos.controller.SceneType;
+import photos.model.Album;
 import photos.model.User;
 
 import java.io.IOException;
@@ -33,6 +35,10 @@ public class PhotosMain extends Application {
 
     public static ArrayList<User> getUserList() {
         return userList;
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 
     public static void main(String[] args) {
