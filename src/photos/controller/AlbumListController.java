@@ -48,6 +48,12 @@ public class AlbumListController {
             return;
         }
 
+        for(Album cmp : user.getAlbumList()) {
+            if (cmp.getAlbumName().equals(userInput.getText())) {
+                return;
+            }
+        }
+
         for (int i = 0; i < user.getAlbumList().size(); i++) {
             if (user.getAlbumList().get(i).equals(albumList.getSelectionModel().getSelectedItem())) {
                 user.getAlbumList().get(i).setAlbumName(userInput.getText());

@@ -4,17 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import photos.PhotosMain;
 import photos.model.Album;
 import photos.model.User;
 
 import java.io.IOException;
-import java.util.List;
 
 public class LogInController {
     private static User currentUser;
@@ -27,6 +23,10 @@ public class LogInController {
 
         if (username.equals("admin")) {
             PhotosMain.switchScene(SceneType.ADMIN);
+        }
+        else if (username.equals("stock")) {
+            // TODO add stock user
+            return;
         }
 
         for (User user: PhotosMain.getUserList()) {
