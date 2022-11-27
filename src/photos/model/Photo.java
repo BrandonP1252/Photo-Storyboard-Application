@@ -2,15 +2,16 @@ package photos.model;
 
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Photo {
     private String photoName;
-    private HashMap<String, String> tags;
+    private ArrayList<String> tags;
     private final Image image;
-    private Image thumbnailImage;
     private String caption;
     private Calendar calendar;
     private int month, day, year;
@@ -18,13 +19,12 @@ public class Photo {
 
     public Photo(Image image) {
         this.image = image;
-        thumbnailImage = image;
         calendar = Calendar.getInstance();
-        month = calendar.get(Calendar.MONTH);
+        month = calendar.get(Calendar.MONTH) + 1;
         day = calendar.get(Calendar.DATE);
         year = calendar.get(Calendar.YEAR);
-        tags = new HashMap<>();
         caption = "No caption set";
+        tags = new ArrayList<>();
 
     }
 
@@ -39,9 +39,10 @@ public class Photo {
     public Image getImage() {
         return image;
     }
-
-    @Override
-    public String toString() {
-        return "Photo 1";
+    public String toStringDate() {
+        return month + "/" + day + "/" + year;
+    }
+    public ArrayList<String> getTags() {
+        return tags;
     }
 }

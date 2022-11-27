@@ -29,16 +29,16 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="captionText" layoutX="114.0" layoutY="307.0" prefHeight="26.0" prefWidth="224.0" />
+      <TextField fx:id="captionText" editable="false" layoutX="114.0" layoutY="307.0" prefHeight="26.0" prefWidth="224.0" />
       <Label alignment="CENTER" layoutX="49.0" layoutY="311.0" prefHeight="18.0" prefWidth="62.0" text="Caption:" />
-      <TextField fx:id="dateText" layoutX="114.0" layoutY="337.0" prefHeight="26.0" prefWidth="224.0" />
+      <TextField fx:id="dateText" editable="false" layoutX="114.0" layoutY="337.0" prefHeight="26.0" prefWidth="224.0" />
       <Label alignment="CENTER" layoutX="58.0" layoutY="341.0" prefHeight="18.0" prefWidth="44.0" text="Date:" />
       <TextField fx:id="userInputPhoto" layoutX="507.0" layoutY="364.0" />
       <Button layoutX="455.0" layoutY="404.0" mnemonicParsing="false" onAction="#onAddPhoto" prefHeight="26.0" prefWidth="104.0" text="Add Photo" />
       <Button layoutX="604.0" layoutY="404.0" mnemonicParsing="false" onAction="#onRemovePhoto" prefHeight="26.0" prefWidth="104.0" text="Remove Photo" />
-      <Button layoutX="454.0" layoutY="438.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Add Tag" />
-      <Button layoutX="604.0" layoutY="438.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Remove Tag" />
-      <Button layoutX="431.0" layoutY="473.0" mnemonicParsing="false" onAction="#onCaptionOrRecaption" prefHeight="26.0" prefWidth="150.0" text="Caption/Recaption Photo" />
+      <Button layoutX="454.0" layoutY="438.0" mnemonicParsing="false" onAction="#onAddTag" prefHeight="26.0" prefWidth="104.0" text="Add Tag" />
+      <Button layoutX="604.0" layoutY="438.0" mnemonicParsing="false" onAction="#onRemoveTag" prefHeight="26.0" prefWidth="104.0" text="Remove Tag" />
+      <Button layoutX="509.0" layoutY="473.0" mnemonicParsing="false" onAction="#onCaptionOrRecaption" prefHeight="26.0" prefWidth="150.0" text="Caption/Recaption Photo" />
       <ListView fx:id="albumList" layoutX="99.0" layoutY="521.0" prefHeight="79.0" prefWidth="254.0" />
       <Label alignment="CENTER" layoutX="186.0" layoutY="486.0" prefHeight="26.0" prefWidth="79.0" text="Album List">
          <font>
@@ -50,9 +50,9 @@
       <TextField fx:id="userInputSearch" layoutX="482.0" layoutY="527.0" prefHeight="26.0" prefWidth="203.0" />
       <Label alignment="CENTER" layoutX="416.0" layoutY="527.0" prefHeight="26.0" prefWidth="53.0" text="Search:" />
       <Button layoutX="705.0" layoutY="612.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" text="Log Out" />
-      <Button layoutX="604.0" layoutY="473.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Display Photo" />
       <Label alignment="CENTER" layoutX="455.0" layoutY="367.0" prefHeight="18.0" prefWidth="44.0" text="Input:" />
-      <TextArea layoutX="114.0" layoutY="369.0" prefHeight="71.0" prefWidth="224.0" />
+      <TextArea fx:id="tagArea" editable="false" layoutX="114.0" layoutY="369.0" prefHeight="71.0" prefWidth="224.0" wrapText="true" />
       <Label alignment="CENTER" layoutX="66.0" layoutY="377.0" text="Tags:" />
+      <Button layoutX="697.0" layoutY="528.0" mnemonicParsing="false" text="Enter" />
    </children>
 </AnchorPane>

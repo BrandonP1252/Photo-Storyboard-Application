@@ -98,8 +98,13 @@ public class AlbumListController {
         FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/PhotoView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         PhotoViewController controller = fxmlLoader.getController();
+        // Load photo list
         ObservableList<Photo> photoList = FXCollections.observableList(currentAlbum.getPhotoList());
         controller.setPhotoList(photoList);
+
+        // Load album list
+        ObservableList<Album> albumList = FXCollections.observableArrayList(LogInController.getCurrentUser().getAlbumList());
+        controller.setAlbumList(albumList);
         PhotosMain.getStage().setScene(scene);
     }
 

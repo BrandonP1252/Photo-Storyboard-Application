@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +18,8 @@ import photos.model.Photo;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PhotoViewController {
 
@@ -39,6 +42,9 @@ public class PhotoViewController {
 
     @FXML
     private ListView<Album> albumList;
+
+    @FXML
+    private TextArea tagArea;
 
     @FXML
     private void onSlideshow() {
@@ -75,7 +81,11 @@ public class PhotoViewController {
 
     @FXML
     private void onPhotoListMouseClicked() {
-        imageView.setImage(photoList.getSelectionModel().getSelectedItem().getImage());
+        Photo photo = photoList.getSelectionModel().getSelectedItem();
+        imageView.setImage(photo.getImage());
+        captionText.setText(photo.getCaption());
+        dateText.setText(photo.toStringDate());
+        tagArea.setText(photo.getTags().toString());
     }
 
     @FXML
@@ -84,6 +94,38 @@ public class PhotoViewController {
         photo.setCaption(userInputPhoto.getText());
         photoList.setItems(FXCollections.observableArrayList(AlbumListController.getCurrentAlbum().getPhotoList()));
         userInputPhoto.setText("");
+        captionText.setText(photo.getCaption());
+    }
+
+    @FXML
+    private void onAddTag() {
+        if (userInputPhoto.getText().isBlank()) {
+            return;
+        }
+        Photo photo = photoList.getSelectionModel().getSelectedItem();
+        String userInput = userInputPhoto.getText().replaceAll("\\s", "");
+        if (photo.getTags().contains(userInput)) {
+            return;
+        }
+        photo.getTags().add(userInput);
+        userInputPhoto.setText("");
+        tagArea.setText(photo.getTags().toString());
+    }
+
+    @FXML
+    private void onRemoveTag() {
+        if (userInputPhoto.getText().isBlank()) {
+            return;
+        }
+        Photo photo = photoList.getSelectionModel().getSelectedItem();
+        String userInput = userInputPhoto.getText().replaceAll("\\s", "");
+        if (!photo.getTags().contains(userInput)) {
+            return;
+        }
+        photo.getTags().remove(userInput);
+        tagArea.setText(photo.getTags().toString());
+        userInputPhoto.setText("");
+
     }
 
     static class ImageStringView extends ListCell<Photo> {
@@ -106,7 +148,10 @@ public class PhotoViewController {
 
     public void setPhotoList(ObservableList<Photo> newList) {
         photoList.setItems(newList);
+    }
 
+    public void setAlbumList(ObservableList<Album> newList) {
+        albumList.setItems(newList);
     }
 
 
