@@ -22,11 +22,12 @@ public class LogInController {
         String username = logInText.getText();
 
         if (username.equals("admin")) {
-            PhotosMain.switchScene(SceneType.ADMIN);
-        }
-        else if (username.equals("stock")) {
-            // TODO add stock user
-            return;
+            FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/Admin.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            AdminController controller = fxmlLoader.getController();
+            ObservableList<User> newList = FXCollections.observableList(PhotosMain.getUserList());
+            controller.setUserList(newList);
+            PhotosMain.getStage().setScene(scene);
         }
 
         for (User user: PhotosMain.getUserList()) {

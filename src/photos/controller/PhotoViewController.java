@@ -120,11 +120,18 @@ public class PhotoViewController {
         Photo photo = photoList.getSelectionModel().getSelectedItem();
         String userInput = userInputTag.getText();
         String[] tokens = userInput.split("[=:-]+");
-        Tag tag = new Tag(tokens[0].toLowerCase(), tokens[1]);
-        if (photo.getNewTags().contains(tag)) {
-            return;
+
+        try {
+            Tag tag = new Tag(tokens[0].toLowerCase(), tokens[1]);
+            if (photo.getNewTags().contains(tag)) {
+                return;
+            }
+            photo.getNewTags().add(tag);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Add Alert
+            System.out.println("Illegal expression for add.");
         }
-        photo.getNewTags().add(tag);
+
         userInputTag.setText("");
         // tag area
         ObservableList<Tag> newTagList = FXCollections.observableList(photo.getNewTags());
@@ -139,9 +146,13 @@ public class PhotoViewController {
         }
         Photo photo = photoList.getSelectionModel().getSelectedItem();
         String[] tokens = userInputTag.getText().split("[=:-]+");
-        Tag tag = new Tag(tokens[0], tokens[1]);
-        photo.getNewTags().remove(tag);
-
+        try {
+            Tag tag = new Tag(tokens[0], tokens[1]);
+            photo.getNewTags().remove(tag);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // Add alert
+            System.out.println("Illegal expression for remove.");
+        }
         // tag area
         userInputTag.setText("");
         ObservableList<Tag> newTagList = FXCollections.observableList(photo.getNewTags());
