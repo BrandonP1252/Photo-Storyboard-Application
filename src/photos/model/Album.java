@@ -24,7 +24,7 @@ public class Album {
     @Override
     public String toString() {
         numberOfPhotos = photoList.size();
-        return albumName + "\t-Number of Photos: " + numberOfPhotos + "\t-Date Range:" ;
+        return albumName + "\t\tPhotos: " + numberOfPhotos + "\t\tDate Range: " + getDateRange();
     }
 
     @Override
@@ -38,5 +38,26 @@ public class Album {
 
     public ArrayList<Photo> getPhotoList() {
         return photoList;
+    }
+    public String getDateRange() {
+        if (photoList == null || photoList.isEmpty()) {
+            return "";
+        }
+        Photo min = photoList.get(0);
+        Photo max = photoList.get(0);
+        for (Photo photo : photoList) {
+            if (photo.getCalendar().compareTo(min.getCalendar()) < 0) {
+                min = photo;
+            }
+        }
+        for (Photo photo : photoList) {
+            if (photo.getCalendar().compareTo(max.getCalendar()) > 0) {
+                max = photo;
+            }
+        }
+        String earliest = min.getMonth() + "/" + min.getDay() + "/" + min.getYear();
+        String latest = max.getMonth() + "/" + max.getDay() + "/" + max.getYear();
+        return earliest + " - " + latest;
+
     }
 }

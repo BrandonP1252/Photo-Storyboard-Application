@@ -5,16 +5,16 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import java.util.HashMap;
-import java.util.Map;
+
 
 public class Photo {
-    private String photoName;
     private ArrayList<String> tags;
     private final Image image;
     private String caption;
     private Calendar calendar;
     private int month, day, year;
+    private Tag tag;
+    private ArrayList<Tag> newTags;
 
 
     public Photo(Image image) {
@@ -23,8 +23,10 @@ public class Photo {
         month = calendar.get(Calendar.MONTH) + 1;
         day = calendar.get(Calendar.DATE);
         year = calendar.get(Calendar.YEAR);
+        calendar.set(Calendar.MILLISECOND,0);
         caption = "No caption set";
         tags = new ArrayList<>();
+        newTags = new ArrayList<>();
 
     }
 
@@ -44,5 +46,25 @@ public class Photo {
     }
     public ArrayList<String> getTags() {
         return tags;
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public ArrayList<Tag> getNewTags() {
+        return newTags;
     }
 }

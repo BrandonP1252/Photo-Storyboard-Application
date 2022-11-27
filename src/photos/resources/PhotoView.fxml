@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +16,7 @@
          </font>
       </Label>
       <ImageView fx:id="imageView" fitHeight="189.0" fitWidth="296.0" layoutX="80.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="photoList" layoutX="462.0" layoutY="111.0" onMouseClicked="#onPhotoListMouseClicked" prefHeight="242.0" prefWidth="243.0" />
+      <ListView fx:id="photoList" layoutX="462.0" layoutY="111.0" onMouseClicked="#onPhotoListMouseClicked" prefHeight="135.0" prefWidth="243.0" />
       <Button layoutX="458.0" layoutY="612.0" mnemonicParsing="false" onAction="#onSlideshow" prefHeight="34.0" prefWidth="203.0" text="Slideshow" />
       <Label alignment="CENTER" layoutX="161.0" layoutY="71.0" prefHeight="25.0" prefWidth="134.0" text="Current Display">
          <font>
@@ -33,26 +32,30 @@
       <Label alignment="CENTER" layoutX="49.0" layoutY="311.0" prefHeight="18.0" prefWidth="62.0" text="Caption:" />
       <TextField fx:id="dateText" editable="false" layoutX="114.0" layoutY="337.0" prefHeight="26.0" prefWidth="224.0" />
       <Label alignment="CENTER" layoutX="58.0" layoutY="341.0" prefHeight="18.0" prefWidth="44.0" text="Date:" />
-      <TextField fx:id="userInputPhoto" layoutX="507.0" layoutY="364.0" />
-      <Button layoutX="455.0" layoutY="404.0" mnemonicParsing="false" onAction="#onAddPhoto" prefHeight="26.0" prefWidth="104.0" text="Add Photo" />
-      <Button layoutX="604.0" layoutY="404.0" mnemonicParsing="false" onAction="#onRemovePhoto" prefHeight="26.0" prefWidth="104.0" text="Remove Photo" />
-      <Button layoutX="454.0" layoutY="438.0" mnemonicParsing="false" onAction="#onAddTag" prefHeight="26.0" prefWidth="104.0" text="Add Tag" />
-      <Button layoutX="604.0" layoutY="438.0" mnemonicParsing="false" onAction="#onRemoveTag" prefHeight="26.0" prefWidth="104.0" text="Remove Tag" />
-      <Button layoutX="509.0" layoutY="473.0" mnemonicParsing="false" onAction="#onCaptionOrRecaption" prefHeight="26.0" prefWidth="150.0" text="Caption/Recaption Photo" />
-      <ListView fx:id="albumList" layoutX="99.0" layoutY="521.0" prefHeight="79.0" prefWidth="254.0" />
-      <Label alignment="CENTER" layoutX="186.0" layoutY="486.0" prefHeight="26.0" prefWidth="79.0" text="Album List">
+      <TextField fx:id="userInputPhoto" layoutX="463.0" layoutY="263.0" prefHeight="25.0" prefWidth="243.0" />
+      <Button layoutX="457.0" layoutY="298.0" mnemonicParsing="false" onAction="#onAddPhoto" prefHeight="26.0" prefWidth="104.0" text="Add Photo" />
+      <Button layoutX="604.0" layoutY="298.0" mnemonicParsing="false" onAction="#onRemovePhoto" prefHeight="26.0" prefWidth="104.0" text="Remove Photo" />
+      <Button layoutX="114.0" layoutY="510.0" mnemonicParsing="false" onAction="#onAddTag" prefHeight="26.0" prefWidth="104.0" text="Add Tag" />
+      <Button layoutX="234.0" layoutY="510.0" mnemonicParsing="false" onAction="#onRemoveTag" prefHeight="26.0" prefWidth="104.0" text="Remove Tag" />
+      <Button layoutX="507.0" layoutY="328.0" mnemonicParsing="false" onAction="#onCaptionOrRecaption" prefHeight="26.0" prefWidth="150.0" text="Caption/Recaption Photo" />
+      <ListView fx:id="albumList" layoutX="457.0" layoutY="412.0" prefHeight="79.0" prefWidth="254.0" />
+      <Label alignment="CENTER" layoutX="543.0" layoutY="381.0" prefHeight="26.0" prefWidth="79.0" text="Album List">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Button layoutX="101.0" layoutY="616.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Copy Photo to" />
-      <Button layoutX="243.0" layoutY="616.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Move Photo to" />
-      <TextField fx:id="userInputSearch" layoutX="482.0" layoutY="527.0" prefHeight="26.0" prefWidth="203.0" />
-      <Label alignment="CENTER" layoutX="416.0" layoutY="527.0" prefHeight="26.0" prefWidth="53.0" text="Search:" />
-      <Button layoutX="705.0" layoutY="612.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="62.0" text="Log Out" />
-      <Label alignment="CENTER" layoutX="455.0" layoutY="367.0" prefHeight="18.0" prefWidth="44.0" text="Input:" />
-      <TextArea fx:id="tagArea" editable="false" layoutX="114.0" layoutY="369.0" prefHeight="71.0" prefWidth="224.0" wrapText="true" />
-      <Label alignment="CENTER" layoutX="66.0" layoutY="377.0" text="Tags:" />
-      <Button layoutX="697.0" layoutY="528.0" mnemonicParsing="false" text="Enter" />
+      <Button layoutX="456.0" layoutY="497.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Copy Photo to" />
+      <Button layoutX="609.0" layoutY="497.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="104.0" text="Move Photo to" />
+      <TextField fx:id="userInputTagSearch" layoutX="58.0" layoutY="586.0" prefHeight="26.0" prefWidth="134.0" />
+      <Button layoutX="705.0" layoutY="612.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="34.0" prefWidth="62.0" text="Log Out" />
+      <Label alignment="CENTER" layoutX="388.0" layoutY="267.0" prefHeight="18.0" prefWidth="70.0" text="Photo Input:" />
+      <Label alignment="CENTER" layoutX="49.0" layoutY="399.0" prefHeight="17.0" prefWidth="62.0" text="Tags List:" />
+      <Button layoutX="181.0" layoutY="629.0" mnemonicParsing="false" onAction="#onEnter" text="Search" />
+      <TextField fx:id="userInputTag" layoutX="114.0" layoutY="466.0" prefHeight="25.0" prefWidth="224.0" />
+      <Label alignment="CENTER" layoutX="40.0" layoutY="470.0" prefHeight="17.0" prefWidth="62.0" text="Tag Input:" />
+      <ListView fx:id="tagList" layoutX="114.0" layoutY="376.0" prefHeight="63.0" prefWidth="224.0" />
+      <TextField fx:id="userInputDateSearch" layoutX="234.0" layoutY="586.0" prefHeight="26.0" prefWidth="134.0" />
+      <Label alignment="CENTER" layoutX="96.0" layoutY="562.0" text="Tag Search" />
+      <Label alignment="CENTER" layoutX="269.0" layoutY="562.0" text="Date Search" />
    </children>
 </AnchorPane>
