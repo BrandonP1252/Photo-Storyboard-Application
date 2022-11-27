@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Album {
     private ArrayList<Photo> photoList;
     private String albumName;
+    private String dateRange;
+    private int numberOfPhotos;
 
     public Album(String albumName) {
         this.albumName = albumName;
@@ -21,7 +23,8 @@ public class Album {
 
     @Override
     public String toString() {
-        return albumName;
+        numberOfPhotos = photoList.size();
+        return albumName + "\t-Number of Photos: " + numberOfPhotos + "\t-Date Range:" ;
     }
 
     @Override
@@ -31,5 +34,9 @@ public class Album {
         }
         Album album = (Album) obj;
         return albumName.equals(album.albumName);
+    }
+
+    public ArrayList<Photo> getPhotoList() {
+        return photoList;
     }
 }

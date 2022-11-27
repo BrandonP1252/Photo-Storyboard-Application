@@ -3,12 +3,16 @@ package photos.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import photos.PhotosMain;
 import photos.model.Album;
+import photos.model.Photo;
 import photos.model.User;
 
+import java.io.IOException;
 
 
 public class AlbumListController {
@@ -72,9 +76,9 @@ public class AlbumListController {
     }
 
     @FXML
-    private void onOpen() {
+    private void onOpen() throws IOException {
         currentAlbum = albumList.getSelectionModel().getSelectedItem();
-        PhotosMain.switchScene(SceneType.PHOTOVIEW);
+        loadPhotoView(currentAlbum);
     }
 
     @FXML
@@ -90,5 +94,13 @@ public class AlbumListController {
         albumList.setItems(newList);
     }
 
+    private void loadPhotoView(Album currentAlbum) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/PhotoView.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        PhotoViewController controller = fxmlLoader.getController();
+        ObservableList<Photo> photoList = FXCollections.observableList(currentAlbum.getPhotoList());
+        controller.setPhotoList(photoList);
+        PhotosMain.getStage().setScene(scene);
+    }
 
 }

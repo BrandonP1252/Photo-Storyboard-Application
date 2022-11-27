@@ -41,7 +41,7 @@ public class LogInController {
     }
 
     // Updates list view and switches scene
-    public void loadListView(User currentUser) throws IOException {
+    private void loadListView(User currentUser) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/AlbumList.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         AlbumListController controller = fxmlLoader.getController();

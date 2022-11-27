@@ -10,7 +10,8 @@ public enum SceneType {
     LOGIN("/photos/resources/LogIn.fxml"),
     ADMIN("/photos/resources/Admin.fxml"),
     ALBUMLIST("/photos/resources/AlbumList.fxml"),
-    PHOTOVIEW("/photos/resources/PhotoView.fxml");
+    PHOTOVIEW("/photos/resources/PhotoView.fxml"),
+    SLIDESHOW("/photos/resources/Slideshow.fxml");
 
 
     private final String viewName;
