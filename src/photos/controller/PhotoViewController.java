@@ -34,9 +34,6 @@ public class PhotoViewController {
     private TextField userInputPhoto;
 
     @FXML
-    private TextField userInputSearch;
-
-    @FXML
     private ListView<Album> albumList;
 
     @FXML
@@ -52,6 +49,8 @@ public class PhotoViewController {
     private TextField userInputDateSearch;
 
     @FXML
+    private TextField userInputAlbum;
+    @FXML
     private void onSlideshow() {
         PhotosMain.switchScene(SceneType.SLIDESHOW);
     }
@@ -65,7 +64,7 @@ public class PhotoViewController {
             String fileLocation = userInputPhoto.getText();
             InputStream stream = new FileInputStream(fileLocation);
             Image image = new Image(stream);
-            Photo photo = new Photo(image);
+            Photo photo = new Photo(image, fileLocation);
             AlbumListController.getCurrentAlbum().getPhotoList().add(photo);
             photoList.setItems(FXCollections.observableArrayList(AlbumListController.getCurrentAlbum().getPhotoList()));
             photoList.setCellFactory(photoListView -> new ImageStringView());
@@ -160,10 +159,37 @@ public class PhotoViewController {
     }
 
     @FXML
-    private void onEnter() {
+    private void onSearch() {
         // EXAMPLE: ("location","New Brunswick"), or ("person","susan")
         // EXAMPLE 2: person=john smith OR person=maya
         // EXAMPLE 3: 11/10/2021 - 11/10/2022
+
+    }
+    @FXML
+    private void onCopyPhoto() {
+        if (userInputAlbum.getText().isBlank()) {
+            return;
+        }
+        String inputAlbumName = userInputAlbum.getText();
+        for (Album album : LogInController.getCurrentUser().getAlbumList()) {
+            if (album.getAlbumName().equals(inputAlbumName)) {
+                album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
+            }
+        }
+    }
+
+    @FXML
+    private void onMovePhoto() {
+        if (userInputAlbum.getText().isBlank()) {
+            return;
+        }
+        String inputAlbumName = userInputAlbum.getText();
+        for (Album album : LogInController.getCurrentUser().getAlbumList()) {
+            if (album.getAlbumName().equals(inputAlbumName)) {
+                album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
+                AlbumListController.getCurrentAlbum().getPhotoList().remove(photoList.getSelectionModel().getSelectedItem());
+            }
+        }
 
 
     }

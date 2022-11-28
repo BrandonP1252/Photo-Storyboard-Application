@@ -15,10 +15,11 @@ public class Photo {
     private int month, day, year;
     private Tag tag;
     private ArrayList<Tag> newTags;
+    private String path;
 
-
-    public Photo(Image image) {
+    public Photo(Image image, String path) {
         this.image = image;
+        this.path = path;
         calendar = Calendar.getInstance();
         month = calendar.get(Calendar.MONTH) + 1;
         day = calendar.get(Calendar.DATE);
@@ -66,5 +67,18 @@ public class Photo {
 
     public ArrayList<Tag> getNewTags() {
         return newTags;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Photo)) {
+            return false;
+        }
+        Photo photo = (Photo) obj;
+        return path.equals(photo.getPath());
     }
 }
