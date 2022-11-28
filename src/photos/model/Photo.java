@@ -2,18 +2,18 @@ package photos.model;
 
 import javafx.scene.image.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 
 
-public class Photo {
+public class Photo implements Serializable {
     private ArrayList<String> tags;
     private final Image image;
     private String caption;
     private Calendar calendar;
     private int month, day, year;
-    private Tag tag;
     private ArrayList<Tag> newTags;
     private String path;
 

@@ -1,15 +1,19 @@
 package photos.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Album {
+public class Album implements Serializable {
     private ArrayList<Photo> photoList;
     private String albumName;
-    private String dateRange;
     private int numberOfPhotos;
 
     public Album(String albumName) {
         this.albumName = albumName;
+        photoList = new ArrayList<>();
+    }
+
+    public Album() {
         photoList = new ArrayList<>();
     }
 
@@ -58,6 +62,5 @@ public class Album {
         String earliest = min.getMonth() + "/" + min.getDay() + "/" + min.getYear();
         String latest = max.getMonth() + "/" + max.getDay() + "/" + max.getYear();
         return earliest + " - " + latest;
-
     }
 }

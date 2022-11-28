@@ -14,11 +14,13 @@ import photos.model.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PhotosMain extends Application {
 
     private static ArrayList<User> userList;
     private static Stage stage;
+    private static int count = 0;
     @Override
     public void start(Stage stage) throws IOException {
         PhotosMain.stage = stage;
@@ -77,6 +79,11 @@ public class PhotosMain extends Application {
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public static int getCount() {
+        count++;
+        return count;
     }
 
     public static void main(String[] args) {

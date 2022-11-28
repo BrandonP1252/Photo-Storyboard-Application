@@ -16,6 +16,7 @@ import photos.model.Tag;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 
 public class PhotoViewController {
 
@@ -62,6 +63,11 @@ public class PhotoViewController {
         }
         try {
             String fileLocation = userInputPhoto.getText();
+            for (Photo cmp : AlbumListController.getCurrentAlbum().getPhotoList()) {
+                if (cmp.getPath().equals(fileLocation)) {
+                    return;
+                }
+            }
             InputStream stream = new FileInputStream(fileLocation);
             Image image = new Image(stream);
             Photo photo = new Photo(image, fileLocation);
@@ -121,7 +127,7 @@ public class PhotoViewController {
         String[] tokens = userInput.split("[=:-]+");
 
         try {
-            Tag tag = new Tag(tokens[0].toLowerCase(), tokens[1]);
+            Tag tag = new Tag(tokens[0].toLowerCase().trim(), tokens[1].trim());
             if (photo.getNewTags().contains(tag)) {
                 return;
             }
@@ -163,7 +169,23 @@ public class PhotoViewController {
         // EXAMPLE: ("location","New Brunswick"), or ("person","susan")
         // EXAMPLE 2: person=john smith OR person=maya
         // EXAMPLE 3: 11/10/2021 - 11/10/2022
-
+        if (!userInputTagSearch.getText().isBlank()) {
+            String[] tokens = userInputTagSearch.getText().split(" ");
+            for (String cmp : tokens) {
+                if (cmp.equalsIgnoreCase("or")) {
+                    // CALL OR FUNC
+                    disjunctionOr(userInputTagSearch.getText());
+                    return;
+                }
+                else if (cmp.equalsIgnoreCase("and")) {
+                    // CALL AND FUNC
+                    conjunctionAnd(userInputTagSearch.getText());
+                    return;
+                }
+            }
+            // call normal func
+            normalTagSearch(userInputTagSearch.getText());
+        }
     }
     @FXML
     private void onCopyPhoto() {
@@ -173,7 +195,11 @@ public class PhotoViewController {
         String inputAlbumName = userInputAlbum.getText();
         for (Album album : LogInController.getCurrentUser().getAlbumList()) {
             if (album.getAlbumName().equals(inputAlbumName)) {
-                album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
+                if (album.getPhotoList().contains(photoList.getSelectionModel().getSelectedItem())) {
+                    return;
+                }else {
+                    album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
+                }
             }
         }
     }
@@ -186,12 +212,30 @@ public class PhotoViewController {
         String inputAlbumName = userInputAlbum.getText();
         for (Album album : LogInController.getCurrentUser().getAlbumList()) {
             if (album.getAlbumName().equals(inputAlbumName)) {
-                album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
-                AlbumListController.getCurrentAlbum().getPhotoList().remove(photoList.getSelectionModel().getSelectedItem());
+                if (album.getPhotoList().contains(photoList.getSelectionModel().getSelectedItem())) {
+                    return;
+                }
+                else {
+                    album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
+                    AlbumListController.getCurrentAlbum().getPhotoList().remove(photoList.getSelectionModel().getSelectedItem());
+                }
             }
         }
+    }
 
+    @FXML
+    private void onDisplayOriginalList() {
+        ObservableList<Photo> newList = FXCollections.observableList(AlbumListController.getCurrentAlbum().getPhotoList());
+        setPhotoList(newList);
+    }
 
+    @FXML
+    private void onCreateNewAlbum() {
+        Album album = new Album("album"+PhotosMain.getCount());
+        album.getPhotoList().addAll(photoList.getItems());
+        LogInController.getCurrentUser().getAlbumList().add(album);
+        ObservableList<Album> newList = FXCollections.observableList(LogInController.getCurrentUser().getAlbumList());
+        setAlbumList(newList);
     }
 
     @FXML
@@ -216,6 +260,74 @@ public class PhotoViewController {
             }
         }
     }
+
+    private void disjunctionOr(String input) {
+        ObservableList<Photo> newList = FXCollections.observableArrayList();
+        String[] tokens = input.split("OR|or");
+        String[] keyPairToken1 = tokens[0].trim().split("[=:-]+");
+        String[] keyPairToken2 = tokens[1].trim().split("[=:-]+");
+        String key1, value1, key2, value2;
+        key1 = keyPairToken1[0].trim();
+        value1 = keyPairToken1[1].trim();
+        key2 = keyPairToken2[0].trim();
+        value2 = keyPairToken2[1].trim();
+        Tag cmp1 = new Tag(key1, value1);
+        Tag cmp2 = new Tag(key2, value2);
+        for (Photo photo : AlbumListController.getCurrentAlbum().getPhotoList()) {
+            if (photo.getNewTags().contains(cmp1) || photo.getNewTags().contains(cmp2)) {
+                newList.add(photo);
+            }
+        }
+        if (newList.size() == 0) {
+            return;
+        }
+        setPhotoList(newList);
+    }
+
+    private void conjunctionAnd(String input) {
+        ObservableList<Photo> newList = FXCollections.observableArrayList();
+        String[] tokens = input.split("AND|and");
+        String[] keyPairToken1 = tokens[0].trim().split("[=:-]+");
+        String[] keyPairToken2 = tokens[1].trim().split("[=:-]+");
+        String key1, value1, key2, value2;
+        key1 = keyPairToken1[0].trim();
+        value1 = keyPairToken1[1].trim();
+        key2 = keyPairToken2[0].trim();
+        value2 = keyPairToken2[1].trim();
+        Tag cmp1 = new Tag(key1, value1);
+        Tag cmp2 = new Tag(key2, value2);
+        for (Photo photo : AlbumListController.getCurrentAlbum().getPhotoList()) {
+            if (photo.getNewTags().contains(cmp1) && photo.getNewTags().contains(cmp2)) {
+                newList.add(photo);
+            }
+        }
+        if (newList.size() == 0) {
+            return;
+        }
+        setPhotoList(newList);
+    }
+
+    private void normalTagSearch(String input) {
+        ObservableList<Photo> newList = FXCollections.observableArrayList();
+        String[] tokens = input.trim().split("=");
+        String key, value;
+        key = tokens[0].trim();
+        value = tokens[1].trim();
+        Tag cmp = new Tag(key, value);
+        for (Photo photo : AlbumListController.getCurrentAlbum().getPhotoList()) {
+            if (photo.getNewTags().contains(cmp)) {
+                newList.add(photo);
+            }
+        }
+        if (newList.size() == 0) {
+            return;
+        }
+        setPhotoList(newList);
+
+    }
+
+
+
 
     public void setPhotoList(ObservableList<Photo> newList) {
         photoList.setItems(newList);
