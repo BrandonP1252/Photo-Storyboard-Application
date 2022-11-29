@@ -4,29 +4,22 @@ import javafx.scene.image.Image;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 
 
 public class Photo implements Serializable {
     private final Image image;
     private String caption;
-    private Calendar calendar;
-    private int month, day, year;
     private ArrayList<Tag> tags;
     private String path;
+    private Date date;
 
     public Photo(Image image, String path) {
         this.image = image;
         this.path = path;
-        calendar = Calendar.getInstance();
-        month = calendar.get(Calendar.MONTH) + 1;
-        day = calendar.get(Calendar.DATE);
-        year = calendar.get(Calendar.YEAR);
-        calendar.set(Calendar.MILLISECOND,0);
+        this.date = new Date();
         caption = "No caption set";
         tags = new ArrayList<>();
-
     }
 
     public String getCaption() {
@@ -39,24 +32,6 @@ public class Photo implements Serializable {
 
     public Image getImage() {
         return image;
-    }
-    public String toStringDate() {
-        return month + "/" + day + "/" + year;
-    }
-    public Calendar getCalendar() {
-        return calendar;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public int getYear() {
-        return year;
     }
 
     public ArrayList<Tag> getTags() {
@@ -74,5 +49,8 @@ public class Photo implements Serializable {
         }
         Photo photo = (Photo) obj;
         return path.equals(photo.getPath());
+    }
+    public Date getDate() {
+        return date;
     }
 }

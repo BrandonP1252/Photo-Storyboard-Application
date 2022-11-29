@@ -1,6 +1,7 @@
 package photos.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Album implements Serializable {
@@ -44,23 +45,21 @@ public class Album implements Serializable {
         return photoList;
     }
     public String getDateRange() {
-        if (photoList == null || photoList.isEmpty()) {
-            return "";
-        }
-        Photo min = photoList.get(0);
-        Photo max = photoList.get(0);
+        LocalDate min = photoList.get(0).getDate().getLocalDate();
+        LocalDate max = photoList.get(0).getDate().getLocalDate();
+
         for (Photo photo : photoList) {
-            if (photo.getCalendar().compareTo(min.getCalendar()) < 0) {
-                min = photo;
+            if (min.compareTo(photo.getDate().getLocalDate()) > 0) {
+                min = photo.getDate().getLocalDate();
             }
         }
+
         for (Photo photo : photoList) {
-            if (photo.getCalendar().compareTo(max.getCalendar()) > 0) {
-                max = photo;
+            if (max.compareTo(photo.getDate().getLocalDate()) < 0) {
+                max = photo.getDate().getLocalDate();
             }
         }
-        String earliest = min.getMonth() + "/" + min.getDay() + "/" + min.getYear();
-        String latest = max.getMonth() + "/" + max.getDay() + "/" + max.getYear();
-        return earliest + " - " + latest;
+        return min.toString() + " - " + max.toString();
+
     }
 }

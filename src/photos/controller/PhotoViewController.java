@@ -102,7 +102,7 @@ public class PhotoViewController {
         }
         imageView.setImage(photo.getImage());
         captionText.setText(photo.getCaption());
-        dateText.setText(photo.toStringDate());
+        dateText.setText(photo.getDate().toString());
         // tag area
         ObservableList<Tag> newTagList = FXCollections.observableList(photo.getTags());
         tagList.setItems(newTagList);
@@ -215,6 +215,9 @@ public class PhotoViewController {
 
     @FXML
     private void onCreateNewAlbum() {
+        if (userInputAlbum.getText().isBlank()) {
+            return;
+        }
         String albumName = userInputAlbum.getText();
         Album album = new Album(albumName);
         if (LogInController.getCurrentUser().getAlbumList().contains(album)) {
