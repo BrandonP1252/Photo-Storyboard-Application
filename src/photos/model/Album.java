@@ -44,6 +44,8 @@ public class Album implements Serializable {
     public ArrayList<Photo> getPhotoList() {
         return photoList;
     }
+
+
     public String getDateRange() {
         LocalDate min = photoList.get(0).getDate().getLocalDate();
         LocalDate max = photoList.get(0).getDate().getLocalDate();
@@ -52,14 +54,13 @@ public class Album implements Serializable {
             if (min.compareTo(photo.getDate().getLocalDate()) > 0) {
                 min = photo.getDate().getLocalDate();
             }
-        }
 
-        for (Photo photo : photoList) {
             if (max.compareTo(photo.getDate().getLocalDate()) < 0) {
                 max = photo.getDate().getLocalDate();
             }
         }
-        return min.toString() + " - " + max.toString();
+
+        return min.toString() + " to " + max.toString();
 
     }
 }

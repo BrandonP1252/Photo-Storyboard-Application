@@ -9,6 +9,12 @@ public class Date {
         date = LocalDate.now();
     }
 
+    // yyyy-mm-dd
+    public Date(String date) {
+        String[] info = date.split("-");
+        this.date = LocalDate.of(Integer.parseInt(info[0]), Integer.parseInt(info[1]), Integer.parseInt(info[2]));
+    }
+
     @Override
     public String toString() {
         return date.toString();
@@ -17,4 +23,5 @@ public class Date {
     public LocalDate getLocalDate() {
         return date;
     }
+
 }

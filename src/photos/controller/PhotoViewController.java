@@ -3,6 +3,7 @@ package photos.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -10,13 +11,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import photos.PhotosMain;
 import photos.model.Album;
+import photos.model.Date;
 import photos.model.Photo;
 import photos.model.Tag;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 
 public class PhotoViewController {
 
@@ -47,10 +48,14 @@ public class PhotoViewController {
     private TextField userInputTagSearch;
 
     @FXML
-    private TextField userInputDateSearch;
+    private DatePicker fromSearch;
+
+    @FXML
+    private DatePicker toSearch;
 
     @FXML
     private TextField userInputAlbum;
+
     @FXML
     private void onSlideshow() {
         PhotosMain.switchScene(SceneType.SLIDESHOW);
@@ -85,6 +90,7 @@ public class PhotoViewController {
             System.out.println("Invalid file path");
         }
     }
+
     @FXML
     private void onRemovePhoto() {
         Photo photo = photoList.getSelectionModel().getSelectedItem();
@@ -157,7 +163,7 @@ public class PhotoViewController {
     }
 
     @FXML
-    private void onSearch() {
+    private void onTagSearch() {
         // EXAMPLE: ("location","New Brunswick"), or ("person","susan")
         // EXAMPLE 2: person=john smith OR person=maya
         // EXAMPLE 3: 11/10/2021 - 11/10/2022
@@ -168,8 +174,7 @@ public class PhotoViewController {
                     // CALL OR FUNC
                     disjunctionOr(userInputTagSearch.getText());
                     return;
-                }
-                else if (cmp.equalsIgnoreCase("and")) {
+                } else if (cmp.equalsIgnoreCase("and")) {
                     // CALL AND FUNC
                     conjunctionAnd(userInputTagSearch.getText());
                     return;
@@ -179,6 +184,27 @@ public class PhotoViewController {
             normalTagSearch(userInputTagSearch.getText());
         }
     }
+
+    @FXML
+    private void onDateSearch() {
+        if (fromSearch.getValue() == null || toSearch.getValue() == null) return;
+
+        Date from = new Date(fromSearch.getValue().toString());
+        Date to = new Date(toSearch.getValue().toString());
+
+        ObservableList<Photo> newList = FXCollections.observableArrayList();
+
+        for (Photo photo : AlbumListController.getCurrentAlbum().getPhotoList()) {
+            if (photo.getDate().getLocalDate().compareTo(from.getLocalDate()) >= 0 &&
+                    photo.getDate().getLocalDate().compareTo(to.getLocalDate()) <= 0) {
+                newList.add(photo);
+            }
+        }
+
+        setPhotoList(newList);
+
+    }
+
     @FXML
     private void onCopyPhoto() {
         if (albumList.getSelectionModel().getSelectedItem() != null && photoList.getSelectionModel().getSelectedItem() != null) {
@@ -316,8 +342,6 @@ public class PhotoViewController {
         setPhotoList(newList);
 
     }
-
-
 
 
     public void setPhotoList(ObservableList<Photo> newList) {

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.controller.PhotoViewController">
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.controller.PhotoViewController">
    <children>
       <Label alignment="CENTER" layoutX="357.0" layoutY="23.0" prefHeight="47.0" prefWidth="85.0" text="Photos">
          <font>
@@ -37,7 +39,7 @@
       <Button layoutX="604.0" layoutY="298.0" mnemonicParsing="false" onAction="#onRemovePhoto" prefHeight="26.0" prefWidth="104.0" text="Remove Photo" />
       <Button layoutX="114.0" layoutY="510.0" mnemonicParsing="false" onAction="#onAddTag" prefHeight="26.0" prefWidth="104.0" text="Add Tag" />
       <Button layoutX="234.0" layoutY="510.0" mnemonicParsing="false" onAction="#onRemoveTag" prefHeight="26.0" prefWidth="104.0" text="Remove Tag" />
-      <Button layoutX="507.0" layoutY="328.0" mnemonicParsing="false" onAction="#onCaptionOrRecaption" prefHeight="26.0" prefWidth="150.0" text="Caption/Recaption Photo" />
+      <Button layoutX="434.0" layoutY="337.0" mnemonicParsing="false" onAction="#onCaptionOrRecaption" prefHeight="26.0" prefWidth="150.0" text="Caption/Recaption Photo" />
       <ListView fx:id="albumList" layoutX="457.0" layoutY="412.0" prefHeight="79.0" prefWidth="254.0" />
       <Label alignment="CENTER" layoutX="543.0" layoutY="381.0" prefHeight="26.0" prefWidth="79.0" text="Album List">
          <font>
@@ -46,20 +48,24 @@
       </Label>
       <Button layoutX="457.0" layoutY="536.0" mnemonicParsing="false" onAction="#onCopyPhoto" prefHeight="26.0" prefWidth="104.0" text="Copy Photo to" />
       <Button layoutX="609.0" layoutY="536.0" mnemonicParsing="false" onAction="#onMovePhoto" prefHeight="26.0" prefWidth="104.0" text="Move Photo to" />
-      <TextField fx:id="userInputTagSearch" layoutX="58.0" layoutY="586.0" prefHeight="26.0" prefWidth="134.0" />
+      <TextField fx:id="userInputTagSearch" layoutX="59.0" layoutY="586.0" prefHeight="26.0" prefWidth="134.0" />
       <Button layoutX="705.0" layoutY="612.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="34.0" prefWidth="62.0" text="Log Out" />
       <Label alignment="CENTER" layoutX="388.0" layoutY="267.0" prefHeight="18.0" prefWidth="70.0" text="Photo Input:" />
       <Label alignment="CENTER" layoutX="49.0" layoutY="399.0" prefHeight="17.0" prefWidth="62.0" text="Tag List:" />
-      <Button layoutX="192.0" layoutY="617.0" mnemonicParsing="false" onAction="#onSearch" text="Search" />
+      <Button layoutX="100.0" layoutY="622.0" mnemonicParsing="false" onAction="#onTagSearch" text="Search" />
       <TextField fx:id="userInputTag" layoutX="114.0" layoutY="466.0" prefHeight="25.0" prefWidth="224.0" />
       <Label alignment="CENTER" layoutX="49.0" layoutY="470.0" prefHeight="17.0" prefWidth="62.0" text="Tag Input:" />
       <ListView fx:id="tagList" layoutX="114.0" layoutY="376.0" prefHeight="63.0" prefWidth="224.0" />
-      <TextField fx:id="userInputDateSearch" layoutX="244.0" layoutY="586.0" prefHeight="26.0" prefWidth="134.0" />
-      <Label alignment="CENTER" layoutX="96.0" layoutY="562.0" text="Tag Search" />
-      <Label alignment="CENTER" layoutX="279.0" layoutY="562.0" text="Date Search" />
+      <Label alignment="CENTER" layoutX="97.0" layoutY="562.0" text="Tag Search" />
+      <Label alignment="CENTER" layoutX="282.0" layoutY="560.0" text="Date Search" />
       <TextField fx:id="userInputAlbum" layoutX="457.0" layoutY="498.0" prefHeight="25.0" prefWidth="254.0" />
       <Label alignment="CENTER" layoutX="376.0" layoutY="498.0" prefHeight="25.0" prefWidth="79.0" text="Album Input:" />
-      <Button layoutX="151.0" layoutY="653.0" mnemonicParsing="false" onAction="#onDisplayOriginalList" prefHeight="25.0" prefWidth="134.0" text="Display Original List" />
+      <Button layoutX="594.0" layoutY="338.0" mnemonicParsing="false" onAction="#onDisplayOriginalList" prefHeight="25.0" prefWidth="134.0" text="Display Original List" />
       <Button layoutX="518.0" layoutY="574.0" mnemonicParsing="false" onAction="#onCreateNewAlbum" prefHeight="25.0" prefWidth="134.0" text="Create New Album" />
+      <DatePicker fx:id="fromSearch" layoutX="263.0" layoutY="583.0" prefHeight="25.0" prefWidth="134.0" />
+      <DatePicker fx:id="toSearch" layoutX="263.0" layoutY="613.0" prefHeight="25.0" prefWidth="134.0" />
+      <Text layoutX="231.0" layoutY="600.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
+      <Text layoutX="238.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
+      <Button layoutX="288.0" layoutY="646.0" mnemonicParsing="false" onAction="#onDateSearch" text="Search" />
    </children>
 </AnchorPane>
