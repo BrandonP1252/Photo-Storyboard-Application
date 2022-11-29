@@ -78,6 +78,7 @@ public class AlbumListController {
     @FXML
     private void onOpen() throws IOException {
         currentAlbum = albumList.getSelectionModel().getSelectedItem();
+        if (currentAlbum == null) return;
         loadPhotoView(currentAlbum);
     }
 
