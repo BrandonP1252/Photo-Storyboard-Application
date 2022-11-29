@@ -9,12 +9,11 @@ import java.util.Calendar;
 
 
 public class Photo implements Serializable {
-    private ArrayList<String> tags;
     private final Image image;
     private String caption;
     private Calendar calendar;
     private int month, day, year;
-    private ArrayList<Tag> newTags;
+    private ArrayList<Tag> tags;
     private String path;
 
     public Photo(Image image, String path) {
@@ -27,7 +26,6 @@ public class Photo implements Serializable {
         calendar.set(Calendar.MILLISECOND,0);
         caption = "No caption set";
         tags = new ArrayList<>();
-        newTags = new ArrayList<>();
 
     }
 
@@ -45,10 +43,6 @@ public class Photo implements Serializable {
     public String toStringDate() {
         return month + "/" + day + "/" + year;
     }
-    public ArrayList<String> getTags() {
-        return tags;
-    }
-
     public Calendar getCalendar() {
         return calendar;
     }
@@ -65,8 +59,8 @@ public class Photo implements Serializable {
         return year;
     }
 
-    public ArrayList<Tag> getNewTags() {
-        return newTags;
+    public ArrayList<Tag> getTags() {
+        return tags;
     }
 
     public String getPath() {

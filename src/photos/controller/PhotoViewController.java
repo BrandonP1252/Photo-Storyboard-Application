@@ -104,7 +104,7 @@ public class PhotoViewController {
         captionText.setText(photo.getCaption());
         dateText.setText(photo.toStringDate());
         // tag area
-        ObservableList<Tag> newTagList = FXCollections.observableList(photo.getNewTags());
+        ObservableList<Tag> newTagList = FXCollections.observableList(photo.getTags());
         tagList.setItems(newTagList);
     }
 
@@ -123,15 +123,18 @@ public class PhotoViewController {
             return;
         }
         Photo photo = photoList.getSelectionModel().getSelectedItem();
+        if (photo == null) {
+            return;
+        }
         String userInput = userInputTag.getText();
         String[] tokens = userInput.split("[=:-]+");
 
         try {
             Tag tag = new Tag(tokens[0].toLowerCase().trim(), tokens[1].trim());
-            if (photo.getNewTags().contains(tag)) {
+            if (photo.getTags().contains(tag)) {
                 return;
             }
-            photo.getNewTags().add(tag);
+            photo.getTags().add(tag);
         } catch (ArrayIndexOutOfBoundsException e) {
             // Add Alert
             System.out.println("Illegal expression for add.");
@@ -139,29 +142,18 @@ public class PhotoViewController {
 
         userInputTag.setText("");
         // tag area
-        ObservableList<Tag> newTagList = FXCollections.observableList(photo.getNewTags());
+        ObservableList<Tag> newTagList = FXCollections.observableList(photo.getTags());
         tagList.setItems(newTagList);
 
     }
 
     @FXML
     private void onRemoveTag() {
-        if (userInputTag.getText().isBlank()) {
-            return;
+        if (photoList.getSelectionModel().getSelectedItem() != null && tagList.getSelectionModel().getSelectedItem() != null) {
+            photoList.getSelectionModel().getSelectedItem().getTags().remove(tagList.getSelectionModel().getSelectedItem());
+            ObservableList<Tag> newTagList = FXCollections.observableList(photoList.getSelectionModel().getSelectedItem().getTags());
+            tagList.setItems(newTagList);
         }
-        Photo photo = photoList.getSelectionModel().getSelectedItem();
-        String[] tokens = userInputTag.getText().split("[=:-]+");
-        try {
-            Tag tag = new Tag(tokens[0], tokens[1]);
-            photo.getNewTags().remove(tag);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            // Add alert
-            System.out.println("Illegal expression for remove.");
-        }
-        // tag area
-        userInputTag.setText("");
-        ObservableList<Tag> newTagList = FXCollections.observableList(photo.getNewTags());
-        tagList.setItems(newTagList);
     }
 
     @FXML
@@ -189,37 +181,29 @@ public class PhotoViewController {
     }
     @FXML
     private void onCopyPhoto() {
-        if (userInputAlbum.getText().isBlank()) {
-            return;
-        }
-        String inputAlbumName = userInputAlbum.getText();
-        for (Album album : LogInController.getCurrentUser().getAlbumList()) {
-            if (album.getAlbumName().equals(inputAlbumName)) {
-                if (album.getPhotoList().contains(photoList.getSelectionModel().getSelectedItem())) {
-                    return;
-                }else {
-                    album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
-                }
+        if (albumList.getSelectionModel().getSelectedItem() != null && photoList.getSelectionModel().getSelectedItem() != null) {
+            if (albumList.getSelectionModel().getSelectedItem().getPhotoList().contains(photoList.getSelectionModel().getSelectedItem())) {
+                return;
             }
+            albumList.getSelectionModel().getSelectedItem().getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
+            ObservableList<Album> newList = FXCollections.observableArrayList(LogInController.getCurrentUser().getAlbumList());
+            setAlbumList(newList);
         }
+
     }
 
     @FXML
     private void onMovePhoto() {
-        if (userInputAlbum.getText().isBlank()) {
-            return;
-        }
-        String inputAlbumName = userInputAlbum.getText();
-        for (Album album : LogInController.getCurrentUser().getAlbumList()) {
-            if (album.getAlbumName().equals(inputAlbumName)) {
-                if (album.getPhotoList().contains(photoList.getSelectionModel().getSelectedItem())) {
-                    return;
-                }
-                else {
-                    album.getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
-                    AlbumListController.getCurrentAlbum().getPhotoList().remove(photoList.getSelectionModel().getSelectedItem());
-                }
+        if (albumList.getSelectionModel().getSelectedItem() != null && photoList.getSelectionModel().getSelectedItem() != null) {
+            if (albumList.getSelectionModel().getSelectedItem().getPhotoList().contains(photoList.getSelectionModel().getSelectedItem())) {
+                return;
             }
+            albumList.getSelectionModel().getSelectedItem().getPhotoList().add(photoList.getSelectionModel().getSelectedItem());
+            AlbumListController.getCurrentAlbum().getPhotoList().remove(photoList.getSelectionModel().getSelectedItem());
+            ObservableList<Album> newAlbumList = FXCollections.observableList(LogInController.getCurrentUser().getAlbumList());
+            ObservableList<Photo> newPhotoList = FXCollections.observableList(AlbumListController.getCurrentAlbum().getPhotoList());
+            setAlbumList(newAlbumList);
+            setPhotoList(newPhotoList);
         }
     }
 
@@ -231,7 +215,11 @@ public class PhotoViewController {
 
     @FXML
     private void onCreateNewAlbum() {
-        Album album = new Album("album"+PhotosMain.getCount());
+        String albumName = userInputAlbum.getText();
+        Album album = new Album(albumName);
+        if (LogInController.getCurrentUser().getAlbumList().contains(album)) {
+            return;
+        }
         album.getPhotoList().addAll(photoList.getItems());
         LogInController.getCurrentUser().getAlbumList().add(album);
         ObservableList<Album> newList = FXCollections.observableList(LogInController.getCurrentUser().getAlbumList());
@@ -274,7 +262,7 @@ public class PhotoViewController {
         Tag cmp1 = new Tag(key1, value1);
         Tag cmp2 = new Tag(key2, value2);
         for (Photo photo : AlbumListController.getCurrentAlbum().getPhotoList()) {
-            if (photo.getNewTags().contains(cmp1) || photo.getNewTags().contains(cmp2)) {
+            if (photo.getTags().contains(cmp1) || photo.getTags().contains(cmp2)) {
                 newList.add(photo);
             }
         }
@@ -297,7 +285,7 @@ public class PhotoViewController {
         Tag cmp1 = new Tag(key1, value1);
         Tag cmp2 = new Tag(key2, value2);
         for (Photo photo : AlbumListController.getCurrentAlbum().getPhotoList()) {
-            if (photo.getNewTags().contains(cmp1) && photo.getNewTags().contains(cmp2)) {
+            if (photo.getTags().contains(cmp1) && photo.getTags().contains(cmp2)) {
                 newList.add(photo);
             }
         }
@@ -315,7 +303,7 @@ public class PhotoViewController {
         value = tokens[1].trim();
         Tag cmp = new Tag(key, value);
         for (Photo photo : AlbumListController.getCurrentAlbum().getPhotoList()) {
-            if (photo.getNewTags().contains(cmp)) {
+            if (photo.getTags().contains(cmp)) {
                 newList.add(photo);
             }
         }
@@ -337,7 +325,5 @@ public class PhotoViewController {
     public void setAlbumList(ObservableList<Album> newList) {
         albumList.setItems(newList);
     }
-
-
 
 }
