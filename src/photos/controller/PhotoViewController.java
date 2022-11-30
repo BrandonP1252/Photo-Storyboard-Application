@@ -21,7 +21,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 public class PhotoViewController {
 
     @FXML
@@ -297,7 +301,7 @@ public class PhotoViewController {
         }
     }
 /**
- * 
+ * uses disjunction for tag
  * @param input
  */
 
@@ -324,7 +328,7 @@ public class PhotoViewController {
         setPhotoList(newList);
     }
  /**
- * 
+ * uses conjunction for tag
  * @param input
  */
 
@@ -351,7 +355,7 @@ public class PhotoViewController {
         setPhotoList(newList);
     }
     /**
-     * 
+     * searches the image using the tag
      * @param input
      */
 
@@ -373,19 +377,28 @@ public class PhotoViewController {
         setPhotoList(newList);
 
     }
+    /**
+    *  updates the path of image tag.
+    * @param path
+    * @return
+    * @throws FileNotFoundException
+    */
     
     public static Image loadImage (String path) throws FileNotFoundException {
         InputStream stream = new FileInputStream(path);
         return new Image(stream);
     }
 
-
+/**
+ * list to update listview.
+ * @param newList
+ */
     public void setPhotoList(ObservableList<Photo> newList) {
         photoList.setItems(newList);
         photoList.setCellFactory(photoListView -> new ImageStringView());
     }
 /**
- * 
+ * List to update listview.
  * @param newList
  */
 
