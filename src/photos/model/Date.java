@@ -13,6 +13,10 @@ public class Date implements Serializable {
     }
 
     // yyyy-mm-dd
+    /**
+     * 
+     * @param date the date of photo
+     */
     public Date(String date) {
         String[] info = date.split("-");
         this.date = LocalDate.of(Integer.parseInt(info[0]), Integer.parseInt(info[1]), Integer.parseInt(info[2]));
