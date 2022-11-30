@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 public class Date implements Serializable {
     LocalDate date;
     public Date() {
@@ -14,7 +18,7 @@ public class Date implements Serializable {
     // yyyy-mm-dd
     /**
      * 
-     * @param date the date of photo
+     * @param sets the date of the photo to the image
      */
     public Date(String date) {
         String[] info = date.split("-");
@@ -27,7 +31,7 @@ public class Date implements Serializable {
     }
 /**
  * 
- * @return date
+ * @return finds the date of the photo and displays
  */
 
     public LocalDate getLocalDate() {
