@@ -86,14 +86,26 @@ public class AlbumListController {
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
-
+/**
+ * 
+ * @return current Album
+ */
     public static Album getCurrentAlbum() {
         return currentAlbum;
     }
+/**
+ * 
+ * @param newList
+ */
 
     public void setAlbumList(ObservableList<Album> newList) {
         albumList.setItems(newList);
     }
+/**
+ * 
+ * @param currentAlbum
+ * @throws IOException
+ */
 
     private void loadPhotoView(Album currentAlbum) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/PhotoView.fxml"));
