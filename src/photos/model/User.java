@@ -11,11 +11,18 @@ public class User implements Serializable {
         this.username = username;
         albumList = new ArrayList<>();
     }
+ /**
+ * 
+ * @return user
+ */
 
     public String getUsername() {
         return username;
     }
-
+/**
+ * 
+ * @return list of albums
+ */
     public ArrayList<Album> getAlbumList() {
         return albumList;
     }
