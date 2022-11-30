@@ -16,16 +16,29 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * 
+ * Represents the slideshow view controller.
  * @author Brandon Perez bkp48 
  * @author Julian Calle joc24
  */
-
 public class SlideshowController {
+    /**
+     * Represents the image view.
+     */
     @FXML
     private ImageView imageView;
+    /**
+     * Represents the list of photos.
+     */
     private ArrayList<Photo> photoList = new ArrayList<>();
+    /**
+     * Represents the index of photo list.
+     */
     private int index;
+
+    /**
+     * Goes to the next photo on the list.
+     * @throws FileNotFoundException
+     */
     @FXML
     private void onNext() throws FileNotFoundException {
         if (index+1 < photoList.size()) {
@@ -35,6 +48,10 @@ public class SlideshowController {
         }
     }
 
+    /**
+     * Goes to previous photo on the list.
+     * @throws FileNotFoundException
+     */
     @FXML
     private void onPrevious() throws FileNotFoundException {
         if (index-1 >= 0) {
@@ -43,6 +60,11 @@ public class SlideshowController {
             imageView.setImage(image);
         }
     }
+
+    /**
+     * Goes back to photo view controller.
+     * @throws IOException
+     */
     @FXML
     private void onBack() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/PhotoView.fxml"));
@@ -57,15 +79,18 @@ public class SlideshowController {
         PhotosMain.getStage().setScene(scene);
     }
 
+    /**
+     * Logs out user from application.
+     */
     @FXML
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
-/**
- * shows the current list of photos.
- * @return photoList
- */
 
+    /**
+     * Gets photo list.
+     * @return photoList Represents the list of photos.
+     */
     public ArrayList<Photo> getPhotoList() {
         return photoList;
     }

@@ -22,46 +22,86 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 /**
- * 
+ * Represents the photo view controller.
  * @author Brandon Perez bkp48 
  * @author Julian Calle joc24
  */
 public class PhotoViewController {
-
+    /**
+     * Represents the image view.
+     */
     @FXML
     private ImageView imageView;
+    /**
+     * Represents caption text field.
+     */
     @FXML
     private TextField captionText;
 
+    /**
+     * Represents the date text field.
+     */
     @FXML
     private TextField dateText;
 
+    /**
+     * Represents the photo list view.
+     */
     @FXML
     private ListView<Photo> photoList;
 
+    /**
+     * Represents the user input photo text field.
+     */
     @FXML
     private TextField userInputPhoto;
 
+    /**
+     * Represents the album list view.
+     */
     @FXML
     private ListView<Album> albumList;
 
+    /**
+     * Represents the tag list view.
+     */
     @FXML
     private ListView<Tag> tagList;
 
+    /**
+     * Represents the user input tag text field.
+     */
     @FXML
     private TextField userInputTag;
 
+    /**
+     * Represents the user input tag search.
+     */
     @FXML
     private TextField userInputTagSearch;
 
+    /**
+     * Represents the initial date selected.
+     */
     @FXML
     private DatePicker fromSearch;
 
+    /**
+     * Represents the final date selected.
+     */
     @FXML
     private DatePicker toSearch;
 
+    /**
+     * Represents the user input album text field.
+     */
     @FXML
     private TextField userInputAlbum;
+
+    /**
+     * Switches scene to slideshow.
+     * @throws IOException
+     */
     @FXML
     private void onSlideshow() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/Slideshow.fxml"));
@@ -77,6 +117,9 @@ public class PhotoViewController {
         PhotosMain.getStage().setScene(scene);
     }
 
+    /**
+     * Adds a photo to list.
+     */
     @FXML
     private void onAddPhoto() {
         if (userInputPhoto.getText().isBlank()) {
@@ -100,6 +143,9 @@ public class PhotoViewController {
 
     }
 
+    /**
+     * Removes photo from list.
+     */
     @FXML
     private void onRemovePhoto() {
         Photo photo = photoList.getSelectionModel().getSelectedItem();
@@ -109,6 +155,10 @@ public class PhotoViewController {
         imageView.setImage(null);
     }
 
+    /**
+     * Displays photo mouse clicked on.
+     * @throws FileNotFoundException
+     */
     @FXML
     private void onPhotoListMouseClicked() throws FileNotFoundException {
         Photo photo = photoList.getSelectionModel().getSelectedItem();
@@ -123,6 +173,9 @@ public class PhotoViewController {
         tagList.setItems(newTagList);
     }
 
+    /**
+     * Captions or re-captions a photo.
+     */
     @FXML
     private void onCaptionOrRecaption() {
         Photo photo = photoList.getSelectionModel().getSelectedItem();
@@ -132,6 +185,9 @@ public class PhotoViewController {
         captionText.setText(photo.getCaption());
     }
 
+    /**
+     * Adds a tag to photo.
+     */
     @FXML
     private void onAddTag() {
         if (userInputTag.getText().isBlank()) {
@@ -162,6 +218,9 @@ public class PhotoViewController {
 
     }
 
+    /**
+     * Removes tag from photo.
+     */
     @FXML
     private void onRemoveTag() {
         if (photoList.getSelectionModel().getSelectedItem() != null && tagList.getSelectionModel().getSelectedItem() != null) {
@@ -171,6 +230,9 @@ public class PhotoViewController {
         }
     }
 
+    /**
+     * Searches for photos with tag.
+     */
     @FXML
     private void onTagSearch() {
         // EXAMPLE: ("location","New Brunswick"), or ("person","susan")
@@ -194,6 +256,9 @@ public class PhotoViewController {
         }
     }
 
+    /**
+     * Searches for photos within date range.
+     */
     @FXML
     private void onDateSearch() {
         if (fromSearch.getValue() == null || toSearch.getValue() == null) return;
@@ -214,6 +279,9 @@ public class PhotoViewController {
 
     }
 
+    /**
+     * Copies photo from one album to another.
+     */
     @FXML
     private void onCopyPhoto() {
         if (albumList.getSelectionModel().getSelectedItem() != null && photoList.getSelectionModel().getSelectedItem() != null) {
@@ -227,6 +295,9 @@ public class PhotoViewController {
 
     }
 
+    /**
+     * Moves photo from one album to another.
+     */
     @FXML
     private void onMovePhoto() {
         if (albumList.getSelectionModel().getSelectedItem() != null && photoList.getSelectionModel().getSelectedItem() != null) {
@@ -242,12 +313,18 @@ public class PhotoViewController {
         }
     }
 
+    /**
+     * Displays the original photo list.
+     */
     @FXML
     private void onDisplayOriginalList() {
         ObservableList<Photo> newList = FXCollections.observableList(AlbumListController.getCurrentAlbum().getPhotoList());
         setPhotoList(newList);
     }
 
+    /**
+     * Creates a new album within photo view.
+     */
     @FXML
     private void onCreateNewAlbum() {
         if (userInputAlbum.getText().isBlank()) {
@@ -264,6 +341,10 @@ public class PhotoViewController {
         setAlbumList(newList);
     }
 
+    /**
+     * Returns to album list view scene.
+     * @throws IOException
+     */
     @FXML
     private void onBack() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/AlbumList.fxml"));
@@ -274,11 +355,17 @@ public class PhotoViewController {
         PhotosMain.getStage().setScene(scene);
     }
 
+    /**
+     * Logs out user from program.
+     */
     @FXML
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
 
+    /**
+     * Forms the photo list view layout.
+     */
     static class ImageStringView extends ListCell<Photo> {
         @Override
         public void updateItem(Photo item, boolean empty) {
@@ -300,11 +387,11 @@ public class PhotoViewController {
             }
         }
     }
-/**
- * uses disjunction for tag
- * @param input
- */
 
+    /**
+     * Disjunction tag search.
+     * @param input user tag search input.
+     */
     private void disjunctionOr(String input) {
         ObservableList<Photo> newList = FXCollections.observableArrayList();
         String[] tokens = input.split("OR|or");
@@ -327,11 +414,11 @@ public class PhotoViewController {
         }
         setPhotoList(newList);
     }
- /**
- * uses conjunction for tag
- * @param input
- */
 
+    /**
+     * Conjunction tag search
+     * @param input user tag search input.
+     */
     private void conjunctionAnd(String input) {
         ObservableList<Photo> newList = FXCollections.observableArrayList();
         String[] tokens = input.split("AND|and");
@@ -356,7 +443,7 @@ public class PhotoViewController {
     }
     /**
      * searches the image using the tag
-     * @param input
+     * @param input represents user tag input.
      */
 
     private void normalTagSearch(String input) {
@@ -378,9 +465,9 @@ public class PhotoViewController {
 
     }
     /**
-    *  updates the path of image tag.
-    * @param path
-    * @return
+     * Loads image with given path.
+    * @param path Represents path of image.
+    * @return Image Returns image of path.
     * @throws FileNotFoundException
     */
     
@@ -391,7 +478,7 @@ public class PhotoViewController {
 
 /**
  * list to update listview.
- * @param newList
+ * @param newList Represents the new updated list.
  */
     public void setPhotoList(ObservableList<Photo> newList) {
         photoList.setItems(newList);
@@ -399,7 +486,7 @@ public class PhotoViewController {
     }
 /**
  * List to update listview.
- * @param newList
+ * @param newList Represents the new updated list.
  */
 
     public void setAlbumList(ObservableList<Album> newList) {
