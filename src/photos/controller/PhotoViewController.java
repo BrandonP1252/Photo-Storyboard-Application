@@ -3,6 +3,8 @@ package photos.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -18,6 +20,7 @@ import photos.model.Tag;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class PhotoViewController {
 
@@ -55,10 +58,18 @@ public class PhotoViewController {
 
     @FXML
     private TextField userInputAlbum;
-
     @FXML
-    private void onSlideshow() {
-        PhotosMain.switchScene(SceneType.SLIDESHOW);
+    private void onSlideshow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/Slideshow.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        SlideshowController controller = fxmlLoader.getController();
+        if (photoList.getItems() == null) {
+            return;
+        }
+        controller.getPhotoList().addAll(photoList.getItems());
+        controller.setIndex(0);
+        controller.getImageView().setImage(controller.getPhotoList().get(controller.getIndex()).getImage());
+        PhotosMain.getStage().setScene(scene);
     }
 
     @FXML
@@ -352,5 +363,4 @@ public class PhotoViewController {
     public void setAlbumList(ObservableList<Album> newList) {
         albumList.setItems(newList);
     }
-
 }

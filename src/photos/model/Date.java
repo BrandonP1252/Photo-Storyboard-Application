@@ -1,12 +1,14 @@
 package photos.model;
 
+import java.time.Clock;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Date {
     LocalDate date;
-
     public Date() {
         date = LocalDate.now();
+        LocalDateTime test = LocalDateTime.now();
     }
 
     // yyyy-mm-dd
