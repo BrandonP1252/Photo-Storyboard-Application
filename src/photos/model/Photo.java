@@ -1,21 +1,17 @@
 package photos.model;
 
-import javafx.scene.image.Image;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
 public class Photo implements Serializable {
-    private final Image image;
     private String caption;
     private ArrayList<Tag> tags;
     private String path;
     private Date date;
 
-    public Photo(Image image, String path) {
-        this.image = image;
+    public Photo(String path) {
         this.path = path;
         this.date = new Date();
         caption = "No caption set";
@@ -28,10 +24,6 @@ public class Photo implements Serializable {
 
     public void setCaption(String caption) {
         this.caption = caption;
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public ArrayList<Tag> getTags() {

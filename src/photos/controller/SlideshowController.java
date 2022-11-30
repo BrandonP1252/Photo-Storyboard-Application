@@ -1,10 +1,12 @@
 package photos.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import photos.PhotosMain;
 import photos.model.Photo;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class SlideshowController {
@@ -13,18 +15,20 @@ public class SlideshowController {
     private ArrayList<Photo> photoList = new ArrayList<>();
     private int index;
     @FXML
-    private void onNext() {
+    private void onNext() throws FileNotFoundException {
         if (index+1 < photoList.size()) {
             setIndex(index+1);
-            imageView.setImage(photoList.get(index).getImage());
+            Image image = PhotoViewController.loadImage(photoList.get(index).getPath());
+            imageView.setImage(image);
         }
     }
 
     @FXML
-    private void onPrevious() {
+    private void onPrevious() throws FileNotFoundException {
         if (index-1 >= 0) {
             setIndex(index-1);
-            imageView.setImage(photoList.get(index).getImage());
+            Image image = PhotoViewController.loadImage(photoList.get(index).getPath());
+            imageView.setImage(image);
         }
     }
 

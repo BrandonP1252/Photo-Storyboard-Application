@@ -8,6 +8,9 @@ import javafx.scene.control.TextField;
 import photos.PhotosMain;
 import photos.model.User;
 
+import java.io.File;
+import java.io.IOException;
+
 public class AdminController {
 
     @FXML
@@ -17,7 +20,7 @@ public class AdminController {
     private TextField userInput;
 
     @FXML
-    private void onAddUser() {
+    private void onAddUser() throws IOException {
         if (userInput.getText().isBlank()) {
             return;
         }
@@ -34,6 +37,7 @@ public class AdminController {
         User user = userList.getSelectionModel().getSelectedItem();
         PhotosMain.getUserList().remove(user);
         userList.setItems(FXCollections.observableArrayList(PhotosMain.getUserList()));
+
     }
 
     @FXML

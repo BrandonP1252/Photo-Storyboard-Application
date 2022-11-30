@@ -1,10 +1,11 @@
 package photos.model;
 
+import java.io.Serializable;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Date {
+public class Date implements Serializable {
     LocalDate date;
     public Date() {
         date = LocalDate.now();

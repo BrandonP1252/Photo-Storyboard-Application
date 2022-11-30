@@ -18,9 +18,9 @@ import photos.model.Photo;
 import photos.model.Tag;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 public class PhotoViewController {
 
@@ -68,7 +68,8 @@ public class PhotoViewController {
         }
         controller.getPhotoList().addAll(photoList.getItems());
         controller.setIndex(0);
-        controller.getImageView().setImage(controller.getPhotoList().get(controller.getIndex()).getImage());
+        Image image = loadImage(controller.getPhotoList().get(controller.getIndex()).getPath());
+        controller.getImageView().setImage(image);
         PhotosMain.getStage().setScene(scene);
     }
 
@@ -77,29 +78,22 @@ public class PhotoViewController {
         if (userInputPhoto.getText().isBlank()) {
             return;
         }
-        try {
-            String fileLocation = userInputPhoto.getText();
-            for (Photo cmp : AlbumListController.getCurrentAlbum().getPhotoList()) {
-                if (cmp.getPath().equals(fileLocation)) {
-                    return;
-                }
+        String fileLocation = userInputPhoto.getText();
+        for (Photo cmp : AlbumListController.getCurrentAlbum().getPhotoList()) {
+            if (cmp.getPath().equals(fileLocation)) {
+                return;
             }
-            InputStream stream = new FileInputStream(fileLocation);
-            Image image = new Image(stream);
-            Photo photo = new Photo(image, fileLocation);
-            AlbumListController.getCurrentAlbum().getPhotoList().add(photo);
-            photoList.setItems(FXCollections.observableArrayList(AlbumListController.getCurrentAlbum().getPhotoList()));
-            photoList.setCellFactory(photoListView -> new ImageStringView());
-            userInputPhoto.setText("");
-
-            //update Album list
-            ObservableList<Album> newList = FXCollections.observableList(LogInController.getCurrentUser().getAlbumList());
-            setAlbumList(newList);
-
-        } catch (IOException e) {
-            // ADD ALERT
-            System.out.println("Invalid file path");
         }
+        Photo photo = new Photo(fileLocation);
+        AlbumListController.getCurrentAlbum().getPhotoList().add(photo);
+        photoList.setItems(FXCollections.observableArrayList(AlbumListController.getCurrentAlbum().getPhotoList()));
+        photoList.setCellFactory(photoListView -> new ImageStringView());
+        userInputPhoto.setText("");
+
+        //update Album list
+        ObservableList<Album> newList = FXCollections.observableList(LogInController.getCurrentUser().getAlbumList());
+        setAlbumList(newList);
+
     }
 
     @FXML
@@ -112,12 +106,12 @@ public class PhotoViewController {
     }
 
     @FXML
-    private void onPhotoListMouseClicked() {
+    private void onPhotoListMouseClicked() throws FileNotFoundException {
         Photo photo = photoList.getSelectionModel().getSelectedItem();
         if (photo == null) {
             return;
         }
-        imageView.setImage(photo.getImage());
+        imageView.setImage(loadImage(photo.getPath()));
         captionText.setText(photo.getCaption());
         dateText.setText(photo.getDate().toString());
         // tag area
@@ -282,7 +276,11 @@ public class PhotoViewController {
                 ImageView thumbnail = new ImageView();
                 thumbnail.setFitHeight(32);
                 thumbnail.setFitWidth(32);
-                thumbnail.setImage(item.getImage());
+                try {
+                    thumbnail.setImage(loadImage(item.getPath()));
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
                 setGraphic(thumbnail);
                 setText(item.getCaption());
             }
@@ -352,6 +350,11 @@ public class PhotoViewController {
         }
         setPhotoList(newList);
 
+    }
+
+    public static Image loadImage (String path) throws FileNotFoundException {
+        InputStream stream = new FileInputStream(path);
+        return new Image(stream);
     }
 
 
