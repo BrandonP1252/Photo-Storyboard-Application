@@ -10,10 +10,18 @@ public class Tag implements Serializable {
         this.key = key;
         this.value = value;
     }
+     /**
+     * 
+     * @return key
+     */
 
     public String getKey() {
         return key;
     }
+/**
+ * 
+ * @return value
+ */
 
     public String getValue() {
         return value;
