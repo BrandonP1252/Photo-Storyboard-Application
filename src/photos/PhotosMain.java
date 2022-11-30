@@ -9,10 +9,9 @@ import photos.controller.SceneType;
 import photos.model.User;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 /**
- * 
+ * Represents the main class.
  * @author Brandon Perez bkp48 
  * @author Julian Calle joc24
  */
