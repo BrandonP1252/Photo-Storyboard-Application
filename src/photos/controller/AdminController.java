@@ -10,7 +10,7 @@ import photos.model.User;
 
 import java.io.IOException;
 /**
- * 
+ * Represents admin controller.
  * @author Brandon Perez bkp48 
  * @author Julian Calle joc24
  */
