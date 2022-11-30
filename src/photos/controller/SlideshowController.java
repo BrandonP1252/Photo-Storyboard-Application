@@ -36,19 +36,33 @@ public class SlideshowController {
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
+/**
+ * 
+ * @return photoList
+ */
 
     public ArrayList<Photo> getPhotoList() {
         return photoList;
     }
+/**
+ * 
+ * @return imageView
+ */
 
     public ImageView getImageView() {
         return imageView;
     }
-
+/**
+ * 
+ * @param index
+ */
     public void setIndex(int index) {
         this.index = index;
     }
-
+/**
+ * 
+ * @return index
+ */
     public int getIndex() {
         return index;
     }
