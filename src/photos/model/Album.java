@@ -29,7 +29,8 @@ public class Album implements Serializable {
     @Override
     public String toString() {
         numberOfPhotos = photoList.size();
-        return albumName + "\t\tPhotos: " + numberOfPhotos + "\t\tDate Range: " + getDateRange();
+        return albumName + "\t\tPhotos: " + numberOfPhotos + "\t\tDate Range: " +
+                (numberOfPhotos > 0 ? getDateRange() : "");
     }
 
     @Override
@@ -47,6 +48,7 @@ public class Album implements Serializable {
 
 
     public String getDateRange() {
+
         LocalDate min = photoList.get(0).getDate().getLocalDate();
         LocalDate max = photoList.get(0).getDate().getLocalDate();
 
