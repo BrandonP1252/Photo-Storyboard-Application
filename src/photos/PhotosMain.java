@@ -17,9 +17,17 @@ import java.util.ArrayList;
  * @author Julian Calle joc24
  */
 public class PhotosMain extends Application {
-
+/**
+ * Represents the userlist
+ */
     private static ArrayList<User> userList;
+     /**
+     * Represents the stage.
+     */
     private static Stage stage;
+    /**
+     * Loads the root scene when launched.
+     */
     @Override
     public void start(Stage stage) throws IOException, ClassNotFoundException {
         PhotosMain.stage = stage;
@@ -32,6 +40,9 @@ public class PhotosMain extends Application {
         stage.setScene(start);
         stage.show();
     }
+/**
+ * Finds the file which holds the users.
+ */
 
     @Override
     public void stop() throws Exception {
