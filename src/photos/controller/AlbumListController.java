@@ -20,13 +20,23 @@ import java.io.IOException;
  */
 
 public class AlbumListController {
+/**
+	 * Represents the current album.
+	 */
     private static Album currentAlbum;
+     /**
+     * represents the album list.
+     */
     @FXML
     private ListView<Album> albumList;
-
+/**
+ * represents the input of the user.
+ */
     @FXML
     private TextField userInput;
-
+/**
+ *  creates a new album for the user.
+ */
     @FXML
     private void onCreateAlbum() {
 
@@ -48,7 +58,9 @@ public class AlbumListController {
         albumList.setItems(FXCollections.observableArrayList(user.getAlbumList()));
         userInput.setText("");
     }
-
+/**
+ * renames the album of the user.
+ */
     @FXML
     private void onRename() {
         User user = LogInController.getCurrentUser();
@@ -70,7 +82,9 @@ public class AlbumListController {
         albumList.setItems(FXCollections.observableArrayList(user.getAlbumList()));
         userInput.setText("");
     }
-
+/**
+ * deletes the selected album.
+ */
     @FXML
     private void onDelete() {
         Album album = albumList.getSelectionModel().getSelectedItem();
@@ -78,14 +92,19 @@ public class AlbumListController {
         user.getAlbumList().remove(album);
         albumList.setItems(FXCollections.observableArrayList(user.getAlbumList()));
     }
-
+/**
+ * opens the selected album.
+ * @throws IOException
+ */
     @FXML
     private void onOpen() throws IOException {
         currentAlbum = albumList.getSelectionModel().getSelectedItem();
         if (currentAlbum == null) return;
         loadPhotoView(currentAlbum);
     }
-
+/**
+ * logs out the user when the button is pressed.
+ */
     @FXML
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);
