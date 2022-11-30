@@ -26,6 +26,10 @@ public class Date implements Serializable {
     public String toString() {
         return date.toString();
     }
+/**
+ * 
+ * @return date
+ */
 
     public LocalDate getLocalDate() {
         return date;
