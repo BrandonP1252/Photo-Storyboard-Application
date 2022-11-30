@@ -29,7 +29,12 @@ public class PhotosMain extends Application {
         Scene start = new Scene(root);
         stage.setScene(start);
         stage.show();
-    }
+    }  
+    /**
+     * 
+     * @param user the user that logs in
+     * @throws FileNotFoundException
+     */
     private void createStock(User user) throws FileNotFoundException {
         userList.add(user);
         user.getAlbumList().add(new Album("stock"));
@@ -65,20 +70,33 @@ public class PhotosMain extends Application {
         Photo photo5 = new Photo(image5, path5);
         album.getPhotoList().add(photo5);
     }
-
+/**
+ * 
+ * @param sceneType changes scene
+ */
     public static void switchScene (SceneType sceneType) {
         stage.setScene(sceneType.getScene());
     }
+  /**
+ * 
+ * @return user profile
+ */
 
     public static ArrayList<User> getUserList() {
         return userList;
     }
-
+/**
+     * 
+     * @return  selected stage
+     */
     public static Stage getStage() {
         return stage;
     }
 
-
+/**
+ * 
+ * @param args launches prog
+ */    
     public static void main(String[] args) {
         launch();
     }
