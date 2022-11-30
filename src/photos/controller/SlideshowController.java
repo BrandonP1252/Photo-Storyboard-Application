@@ -15,6 +15,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
+
 public class SlideshowController {
     @FXML
     private ImageView imageView;
@@ -56,7 +62,7 @@ public class SlideshowController {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
 /**
- * 
+ * shows the current list of photos.
  * @return photoList
  */
 
@@ -64,7 +70,7 @@ public class SlideshowController {
         return photoList;
     }
 /**
- * 
+ * changes the view of the image.
  * @return imageView
  */
 
@@ -72,14 +78,14 @@ public class SlideshowController {
         return imageView;
     }
 /**
- * 
+ * sets the current index of slideshow.
  * @param index
  */
     public void setIndex(int index) {
         this.index = index;
     }
 /**
- * 
+ * finds the current index of slideshow.
  * @return index
  */
     public int getIndex() {
