@@ -45,7 +45,10 @@ public class Album implements Serializable {
     public ArrayList<Photo> getPhotoList() {
         return photoList;
     }
-
+/**
+ * 
+ * @return photolist date
+ */
 
     public String getDateRange() {
 
