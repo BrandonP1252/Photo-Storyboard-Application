@@ -25,6 +25,10 @@ public enum SceneType {
             e.printStackTrace();
         }
     }
+/**
+ * 
+ * @return scene
+ */
 
     public Scene getScene(){
         return scene;
