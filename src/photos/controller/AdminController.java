@@ -9,7 +9,11 @@ import photos.PhotosMain;
 import photos.model.User;
 
 import java.io.IOException;
-
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 public class AdminController {
 
     @FXML
@@ -44,8 +48,8 @@ public class AdminController {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
 /**
- * 
- * @param newList calls to newList variable
+ * Finds the user and creates a newlist for them.
+ * @param newList 
  */
     public void setUserList(ObservableList<User> newList) {
         userList.setItems(newList);
