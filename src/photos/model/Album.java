@@ -17,10 +17,18 @@ public class Album implements Serializable {
     public Album() {
         photoList = new ArrayList<>();
     }
+/**
+ * 
+ * @return albumName
+ */
 
     public String getAlbumName() {
         return albumName;
     }
+/**
+ * 
+ * @param newAlbumName
+ */
 
     public void setAlbumName(String newAlbumName) {
         this.albumName = newAlbumName;
@@ -41,6 +49,10 @@ public class Album implements Serializable {
         Album album = (Album) obj;
         return albumName.equals(album.albumName);
     }
+/**
+ * 
+ * @return PhotoList
+ */
 
     public ArrayList<Photo> getPhotoList() {
         return photoList;
