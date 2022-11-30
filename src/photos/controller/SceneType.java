@@ -5,7 +5,11 @@ import javafx.scene.Scene;
 import photos.PhotosMain;
 
 import java.io.IOException;
-
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 public enum SceneType {
     LOGIN("/photos/resources/LogIn.fxml"),
     ADMIN("/photos/resources/Admin.fxml"),
@@ -26,7 +30,7 @@ public enum SceneType {
         }
     }
 /**
- * 
+ * finds the current scene and changes if needed
  * @return scene
  */
 

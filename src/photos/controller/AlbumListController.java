@@ -13,7 +13,11 @@ import photos.model.Photo;
 import photos.model.User;
 
 import java.io.IOException;
-
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 
 public class AlbumListController {
     private static Album currentAlbum;
@@ -87,14 +91,14 @@ public class AlbumListController {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
 /**
- * 
- * @return current Album
+ * When chosen the album will be displayed.
+ * @return currentAlbum
  */
     public static Album getCurrentAlbum() {
         return currentAlbum;
     }
 /**
- * 
+ * A newList is created for the user in Album
  * @param newList
  */
 
@@ -102,7 +106,7 @@ public class AlbumListController {
         albumList.setItems(newList);
     }
 /**
- * 
+ * Finds the selected Album from the past session and displays.
  * @param currentAlbum
  * @throws IOException
  */
