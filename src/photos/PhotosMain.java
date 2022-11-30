@@ -50,7 +50,12 @@ public class PhotosMain extends Application {
             fileOut.close();
         }
     }
-
+    
+/**
+ * 
+ * @throws IOException
+ * @throws ClassNotFoundException
+ */
     public static void deserializeUsers() throws IOException, ClassNotFoundException {
         File path = new File("src/data/users");
         File[] files = path.listFiles();
@@ -65,20 +70,33 @@ public class PhotosMain extends Application {
             fileIn.close();
         }
     }
-
+/**
+ * 
+ * @param sceneType changes scene
+ */
 
     public static void switchScene (SceneType sceneType) {
         stage.setScene(sceneType.getScene());
     }
+/**
+ * 
+ * @return user profile
+ */
 
     public static ArrayList<User> getUserList() {
         return userList;
     }
-
+/**
+* 
+* @return  selected stage
+*/
     public static Stage getStage() {
         return stage;
     }
-
+/**
+ * 
+ * @param args launches prog
+ */
 
     public static void main(String[] args) {
         launch();
