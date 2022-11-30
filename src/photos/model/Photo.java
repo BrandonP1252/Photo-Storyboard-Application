@@ -19,7 +19,7 @@ public class Photo implements Serializable {
     }
 /**
  * 
- * @return
+ * @return caption
  */
 
     public String getCaption() {
