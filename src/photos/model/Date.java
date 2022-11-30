@@ -9,7 +9,6 @@ public class Date implements Serializable {
     LocalDate date;
     public Date() {
         date = LocalDate.now();
-        LocalDateTime test = LocalDateTime.now();
     }
 
     // yyyy-mm-dd

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.controller.PhotoViewController">
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.controller.PhotoViewController">
    <children>
       <Label alignment="CENTER" layoutX="357.0" layoutY="23.0" prefHeight="47.0" prefWidth="85.0" text="Photos">
          <font>
@@ -67,5 +67,6 @@
       <Text layoutX="231.0" layoutY="600.0" strokeType="OUTSIDE" strokeWidth="0.0" text="From" />
       <Text layoutX="238.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To" />
       <Button layoutX="288.0" layoutY="646.0" mnemonicParsing="false" onAction="#onDateSearch" text="Search" />
+      <Button layoutX="394.0" layoutY="645.0" mnemonicParsing="false" onAction="#onBack" prefHeight="26.0" prefWidth="58.0" text="Back" />
    </children>
 </AnchorPane>

@@ -261,6 +261,16 @@ public class PhotoViewController {
     }
 
     @FXML
+    private void onBack() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(PhotosMain.class.getResource("/photos/resources/AlbumList.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        AlbumListController controller = fxmlLoader.getController();
+        ObservableList<Album> newList = FXCollections.observableArrayList(LogInController.getCurrentUser().getAlbumList());
+        controller.setAlbumList(newList);
+        PhotosMain.getStage().setScene(scene);
+    }
+
+    @FXML
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
@@ -363,11 +373,7 @@ public class PhotoViewController {
         setPhotoList(newList);
 
     }
-/**
- * 
- * @param newList
- */
-
+    
     public static Image loadImage (String path) throws FileNotFoundException {
         InputStream stream = new FileInputStream(path);
         return new Image(stream);

@@ -10,5 +10,6 @@
       <Button layoutX="434.0" layoutY="547.0" mnemonicParsing="false" onAction="#onNext" prefHeight="44.0" prefWidth="92.0" text="Next" />
       <Button layoutX="274.0" layoutY="547.0" mnemonicParsing="false" onAction="#onPrevious" prefHeight="44.0" prefWidth="92.0" text="Previous" />
       <Button layoutX="366.0" layoutY="619.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="37.0" prefWidth="68.0" text="Log Out" />
+      <Button layoutX="591.0" layoutY="618.0" mnemonicParsing="false" onAction="#onBack" prefHeight="38.0" prefWidth="81.0" text="Back" />
    </children>
 </AnchorPane>

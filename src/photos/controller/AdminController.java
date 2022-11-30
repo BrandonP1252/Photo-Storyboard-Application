@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import photos.PhotosMain;
 import photos.model.User;
 
-import java.io.File;
 import java.io.IOException;
 
 public class AdminController {
