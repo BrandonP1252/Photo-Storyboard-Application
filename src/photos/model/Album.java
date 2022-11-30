@@ -3,6 +3,11 @@ package photos.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 
 public class Album implements Serializable {
     private ArrayList<Photo> photoList;
@@ -19,7 +24,7 @@ public class Album implements Serializable {
     }
 /**
  * 
- * @return albumName
+ * @return displays the name of the album
  */
 
     public String getAlbumName() {
@@ -27,7 +32,7 @@ public class Album implements Serializable {
     }
 /**
  * 
- * @param newAlbumName
+ * @param writes out the name of the new album name
  */
 
     public void setAlbumName(String newAlbumName) {
@@ -51,7 +56,7 @@ public class Album implements Serializable {
     }
 /**
  * 
- * @return PhotoList
+ * @return find and displays the list of photos
  */
 
     public ArrayList<Photo> getPhotoList() {
@@ -59,7 +64,7 @@ public class Album implements Serializable {
     }
 /**
  * 
- * @return photolist date
+ * @return displays the date of the photo
  */
 
     public String getDateRange() {
