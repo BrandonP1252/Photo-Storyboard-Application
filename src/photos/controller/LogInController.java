@@ -12,7 +12,7 @@ import photos.model.User;
 
 import java.io.IOException;
 /**
- * 
+ * Represents log in controller.
  * @author Brandon Perez bkp48 
  * @author Julian Calle joc24
  */
