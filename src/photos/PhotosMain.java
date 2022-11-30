@@ -1,3 +1,6 @@
+/**
+ * Represents the photo application.
+ */
 package photos;
 
 import javafx.application.Application;

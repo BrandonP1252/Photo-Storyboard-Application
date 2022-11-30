@@ -1,3 +1,6 @@
+/**
+ * Represents the user model object.
+ */
 package photos.model;
 
 import java.io.Serializable;

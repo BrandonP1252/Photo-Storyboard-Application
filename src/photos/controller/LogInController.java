@@ -1,3 +1,6 @@
+/**
+ * Represents the controller classes.
+ */
 package photos.controller;
 
 import javafx.collections.FXCollections;
