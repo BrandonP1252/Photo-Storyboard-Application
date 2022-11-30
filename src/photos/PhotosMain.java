@@ -11,7 +11,11 @@ import photos.model.User;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 public class PhotosMain extends Application {
 
     private static ArrayList<User> userList;
@@ -50,7 +54,7 @@ public class PhotosMain extends Application {
     }
     
 /**
- * 
+ * Locates the file users are stored in and adds if needed.
  * @throws IOException
  * @throws ClassNotFoundException
  */
@@ -69,31 +73,31 @@ public class PhotosMain extends Application {
         }
     }
 /**
- * 
- * @param sceneType changes scene
+ * Changes the scene for user.
+ * @param sceneType
  */
 
     public static void switchScene (SceneType sceneType) {
         stage.setScene(sceneType.getScene());
     }
 /**
- * 
- * @return user profile
+ * checks if there is a current user.
+ * @return userList
  */
 
     public static ArrayList<User> getUserList() {
         return userList;
     }
 /**
-* 
-* @return  selected stage
+* selects the stage for user.
+* @return stage
 */
     public static Stage getStage() {
         return stage;
     }
 /**
- * 
- * @param args launches prog
+ * launches the program
+ * @param args 
  */
 
     public static void main(String[] args) {
