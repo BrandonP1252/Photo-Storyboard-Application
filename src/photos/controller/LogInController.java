@@ -40,6 +40,11 @@ public class LogInController {
 
         logInText.setText("");
     }
+    /**
+     * 
+     * @param currentUser
+     * @throws IOException
+     */
 
     // Updates list view and switches scene
     private void loadListView(User currentUser) throws IOException {
@@ -50,6 +55,10 @@ public class LogInController {
         controller.setAlbumList(newList);
         PhotosMain.getStage().setScene(scene);
     }
+    /**
+     * 
+     * @return user
+     */
     public static User getCurrentUser() {
         return currentUser;
     }
