@@ -17,18 +17,34 @@ public class Photo implements Serializable {
         caption = "No caption set";
         tags = new ArrayList<>();
     }
+/**
+ * 
+ * @return
+ */
 
     public String getCaption() {
         return caption;
     }
+/**
+ * 
+ * @param caption
+ */
 
     public void setCaption(String caption) {
         this.caption = caption;
     }
+/**
+ * 
+ * @return displays tag
+ */
 
     public ArrayList<Tag> getTags() {
         return tags;
     }
+/**
+ * 
+ * @return path
+ */
 
     public String getPath() {
         return path;
