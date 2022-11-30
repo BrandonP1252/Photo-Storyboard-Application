@@ -286,6 +286,10 @@ public class PhotoViewController {
             }
         }
     }
+/**
+ * 
+ * @param input
+ */
 
     private void disjunctionOr(String input) {
         ObservableList<Photo> newList = FXCollections.observableArrayList();
@@ -309,6 +313,10 @@ public class PhotoViewController {
         }
         setPhotoList(newList);
     }
+ /**
+ * 
+ * @param input
+ */
 
     private void conjunctionAnd(String input) {
         ObservableList<Photo> newList = FXCollections.observableArrayList();
@@ -332,6 +340,10 @@ public class PhotoViewController {
         }
         setPhotoList(newList);
     }
+    /**
+     * 
+     * @param input
+     */
 
     private void normalTagSearch(String input) {
         ObservableList<Photo> newList = FXCollections.observableArrayList();
@@ -351,6 +363,10 @@ public class PhotoViewController {
         setPhotoList(newList);
 
     }
+/**
+ * 
+ * @param newList
+ */
 
     public static Image loadImage (String path) throws FileNotFoundException {
         InputStream stream = new FileInputStream(path);
@@ -362,6 +378,10 @@ public class PhotoViewController {
         photoList.setItems(newList);
         photoList.setCellFactory(photoListView -> new ImageStringView());
     }
+/**
+ * 
+ * @param newList
+ */
 
     public void setAlbumList(ObservableList<Album> newList) {
         albumList.setItems(newList);

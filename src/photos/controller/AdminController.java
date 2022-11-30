@@ -44,7 +44,10 @@ public class AdminController {
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);
     }
-
+/**
+ * 
+ * @param newList calls to newList variable
+ */
     public void setUserList(ObservableList<User> newList) {
         userList.setItems(newList);
     }
