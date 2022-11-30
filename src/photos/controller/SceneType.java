@@ -26,7 +26,7 @@ public enum SceneType {
         }
     }
 /**
- * 
+ * finds the current scene and changes if needed
  * @return scene
  */
 
