@@ -15,13 +15,19 @@ import java.io.IOException;
  * @author Julian Calle joc24
  */
 public class AdminController {
-
+/**
+ * Calls for a new user
+ */
     @FXML
     private ListView<User> userList;
-
+/**
+ * Allows for the user to input text
+ */
     @FXML
     private TextField userInput;
-
+/**
+ * Adds a new user to the List.
+ */   
     @FXML
     private void onAddUser() throws IOException {
         if (userInput.getText().isBlank()) {
@@ -34,7 +40,9 @@ public class AdminController {
         userList.setItems(FXCollections.observableArrayList(PhotosMain.getUserList()));
         userInput.setText("");
     }
-
+/**
+ * Deletes the selected user from the user List.
+ */
     @FXML
     private void onDeleteUser() {
         User user = userList.getSelectionModel().getSelectedItem();
@@ -42,7 +50,9 @@ public class AdminController {
         userList.setItems(FXCollections.observableArrayList(PhotosMain.getUserList()));
 
     }
-
+/**
+ * Changes the scene from the login screen.
+ */
     @FXML
     private void onLogOut() {
         PhotosMain.switchScene(SceneType.LOGIN);

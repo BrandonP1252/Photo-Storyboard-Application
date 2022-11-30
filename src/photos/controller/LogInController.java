@@ -17,10 +17,19 @@ import java.io.IOException;
  * @author Julian Calle joc24
  */
 public class LogInController {
+/**
+* Represents the user
+*/
     private static User currentUser;
+/**
+* represents the text shown on log in
+*/
     @FXML
     private TextField logInText;
-
+/**
+ * When log in it will load the listview for the user.
+ * @throws IOException
+ */
     @FXML
     private void onLogIn() throws IOException {
         String username = logInText.getText();
