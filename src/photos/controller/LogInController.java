@@ -11,7 +11,11 @@ import photos.model.Album;
 import photos.model.User;
 
 import java.io.IOException;
-
+/**
+ * 
+ * @author Brandon Perez bkp48 
+ * @author Julian Calle joc24
+ */
 public class LogInController {
     private static User currentUser;
     @FXML
@@ -41,7 +45,7 @@ public class LogInController {
         logInText.setText("");
     }
     /**
-     * 
+     * loads the user of the past session and finds the list view
      * @param currentUser
      * @throws IOException
      */
@@ -56,7 +60,7 @@ public class LogInController {
         PhotosMain.getStage().setScene(scene);
     }
     /**
-     * 
+     * Finds the current user and finds current session
      * @return user
      */
     public static User getCurrentUser() {
