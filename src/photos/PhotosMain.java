@@ -48,7 +48,7 @@ public class PhotosMain extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        File dir = new File("src/data/users");
+        File dir = new File("src/photos/info/data/users");
         for (File file : dir.listFiles()) {
             if (!file.isDirectory()) {
                 file.delete();
@@ -56,7 +56,7 @@ public class PhotosMain extends Application {
         }
 
         for (User user : userList) {
-            String fileOutput = "src/data/users/" + user.getUsername() + ".ser";
+            String fileOutput = "src/photos/info/data/users/" + user.getUsername() + ".ser";
             FileOutputStream fileOut = new FileOutputStream(fileOutput);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(user);
@@ -71,12 +71,12 @@ public class PhotosMain extends Application {
  * @throws ClassNotFoundException
  */
     public static void deserializeUsers() throws IOException, ClassNotFoundException {
-        File path = new File("src/data/users");
+        File path = new File("src/photos/info/data/users");
         File[] files = path.listFiles();
         for (File file : files) {
             User user;
             String fileName = file.getName();
-            FileInputStream fileIn = new FileInputStream("src/data/users/"+fileName);
+            FileInputStream fileIn = new FileInputStream("src/photos/info/data/users/"+fileName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             user = (User) in.readObject();
             userList.add(user);

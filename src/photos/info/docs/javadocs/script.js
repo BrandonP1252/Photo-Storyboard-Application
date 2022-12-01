@@ -115,7 +115,7 @@ function copySnippet(button) {
     document.execCommand("copy");
     document.body.removeChild(textarea);
     var span = button.firstElementChild;
-    var copied = span.getAttribute("data-copied");
+    var copied = span.getAttribute("photos.info.data-copied");
     if (span.innerHTML !== copied) {
         var initialLabel = span.innerHTML;
         span.innerHTML = copied;
