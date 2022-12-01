@@ -57,6 +57,9 @@ public class SlideshowController {
         if (index-1 >= 0) {
             setIndex(index-1);
             Image image = PhotoViewController.loadImage(photoList.get(index).getPath());
+            if (image == null) {
+                return;
+            }
             imageView.setImage(image);
         }
     }

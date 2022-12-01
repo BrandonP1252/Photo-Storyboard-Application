@@ -17,10 +17,8 @@ import photos.model.Date;
 import photos.model.Photo;
 import photos.model.Tag;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+
 /**
  * Represents the photo view controller.
  * @author Brandon Perez bkp48 
@@ -113,6 +111,9 @@ public class PhotoViewController {
         controller.getPhotoList().addAll(photoList.getItems());
         controller.setIndex(0);
         Image image = loadImage(controller.getPhotoList().get(controller.getIndex()).getPath());
+        if (image == null) {
+            return;
+        }
         controller.getImageView().setImage(image);
         PhotosMain.getStage().setScene(scene);
     }
@@ -126,6 +127,10 @@ public class PhotoViewController {
             return;
         }
         String fileLocation = userInputPhoto.getText();
+        File file = new File(fileLocation);
+        if (!file.exists() || file.isDirectory()) {
+            return;
+        }
         for (Photo cmp : AlbumListController.getCurrentAlbum().getPhotoList()) {
             if (cmp.getPath().equals(fileLocation)) {
                 return;
@@ -163,6 +168,9 @@ public class PhotoViewController {
     private void onPhotoListMouseClicked() throws FileNotFoundException {
         Photo photo = photoList.getSelectionModel().getSelectedItem();
         if (photo == null) {
+            return;
+        }
+        if (loadImage(photo.getPath()) == null) {
             return;
         }
         imageView.setImage(loadImage(photo.getPath()));
@@ -378,6 +386,9 @@ public class PhotoViewController {
                 thumbnail.setFitHeight(32);
                 thumbnail.setFitWidth(32);
                 try {
+                    if (loadImage(item.getPath()) == null) {
+                        return;
+                    }
                     thumbnail.setImage(loadImage(item.getPath()));
                 } catch (FileNotFoundException e) {
                     throw new RuntimeException(e);
@@ -472,6 +483,10 @@ public class PhotoViewController {
     */
     
     public static Image loadImage (String path) throws FileNotFoundException {
+        File file = new File(path);
+        if (!file.exists() || file.isDirectory()) {
+            return null;
+        }
         InputStream stream = new FileInputStream(path);
         return new Image(stream);
     }
