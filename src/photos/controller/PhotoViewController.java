@@ -206,7 +206,7 @@ public class PhotoViewController {
             return;
         }
         String userInput = userInputTag.getText();
-        String[] tokens = userInput.split("[=:-]+");
+        String[] tokens = userInput.split("[=,:-]+");
 
         try {
             Tag tag = new Tag(tokens[0].toLowerCase().trim(), tokens[1].trim());
